@@ -56,10 +56,10 @@ import kowabunga
 from kowabunga.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://raw.githubusercontent.com/api/v1
+# Defining the host is optional and defaults to https://your_kowabunga_kahuna_server/api/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = kowabunga.Configuration(
-    host = "https://raw.githubusercontent.com/api/v1"
+    host = "https://your_kowabunga_kahuna_server/api/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -94,7 +94,7 @@ with kowabunga.ApiClient(configuration) as api_client:
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *https://raw.githubusercontent.com/api/v1*
+All URIs are relative to *https://your_kowabunga_kahuna_server/api/v1*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------

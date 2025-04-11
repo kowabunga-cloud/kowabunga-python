@@ -81,6 +81,7 @@ sdk: get-openapi-generator ; $(info $(M) [OpenAPIv3] Generate Python SDK client 
 	  $(OUT)
 	$Q sed -i 's%GIT_USER_ID%$(PACKAGE_NAMESPACE)%' $(BUILD_DIR)/pyproject.toml $(BUILD_DIR)/README.md
 	$Q sed -i 's%GIT_REPO_ID%$(PACKAGE_NAME)%' $(BUILD_DIR)/pyproject.toml $(BUILD_DIR)/README.md
+	$Q sed -i 's%raw\.githubusercontent\.com%your_kowabunga_kahuna_server%' $(BUILD_DIR)/README.md
 	$Q rm -f $(BUILD_DIR)/.gitignore
 	$Q rm -f $(BUILD_DIR)/.gitlab-ci.yml
 	$Q rm -rf $(BUILD_DIR)/.openapi-generator
