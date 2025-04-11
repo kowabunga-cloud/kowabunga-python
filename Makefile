@@ -98,7 +98,7 @@ sdk: get-openapi-generator ; $(info $(M) [OpenAPIv3] Generate Python SDK client 
 	$Q cp -f $(BUILD_DIR)/tox.ini .
 
 .PHONY: tests
-tests: ; $(info $(M) [Go] Testing Kowabunga SDK…) @
+tests: ; $(info $(M) [Python] Testing Kowabunga SDK…) @
 	$Q python3 -m venv $(RUNTIME_DIR)
 	$Q $(RUNTIME_DIR)/bin/pip3 install -r requirements.txt
 	$Q $(RUNTIME_DIR)/bin/pip3 install -r test-requirements.txt
