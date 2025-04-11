@@ -44,9 +44,29 @@ import kowabunga
 
 ## Usage
 
-Creating an API client can be done by:
+Creating an API client and listing all Kompute instances can be done by:
 
 ```python
+
+import kowabunga
+from kowabunga.rest import ApiException
+from pprint import pprint
+
+cfg = kowabunga.Configuration(
+    host = "https://your_kowabunga_kahuna_server/api/v1"
+)
+
+cfg.api_key['ApiKeyAuth'] = os.environ["API_KEY"]
+
+with kowabunga.ApiClient(cfg) as client:
+    kompute = kowabunga.KomputeApi(client)
+
+    try:
+        for k in kompute.list_komputes():
+          pprint(kompute.read_kompute(k))
+    except ApiException as e:
+        print("Exception when calling KomputeApi->list_komputes: %s\n" % e)
+
 ```
 
 where **uri** is *https://your\_kowabunga\_kahuna\_server* and **token** is the associated API key.
