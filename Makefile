@@ -8,7 +8,9 @@
 # Common #
 ##########
 
-PACKAGE_NAME = github.com/kowabunga-cloud/kowabunga-go
+PACKAGE_NAMESPACE = kowabunga-cloud
+PACKAGE_NAME = kowabunga-python
+PACKAGE_URL = "https://github.com/$(PACKAGE_NAMESPACE)/$(PACKAGE_NAME)"
 
 V = 0
 Q = $(if $(filter 1,$V),,@)
@@ -20,17 +22,6 @@ else
   OUT = ">/dev/null"
 endif
 
-# # This target grabs the necessary go modules
-# .PHONY: mod
-# mod: ; $(info $(M) Collecting modules…) @
-# 	$Q go mod download
-# 	$Q go mod tidy
-
-# # Updates all go modules
-# update: ; $(info $(M) Updating modules…) @
-# 	$Q go get -u ./...
-# 	$Q go mod tidy
-
 .PHONY: all
 all: sdk tests ; @
 	$Q echo "done"
@@ -39,6 +30,7 @@ all: sdk tests ; @
 clean: ; $(info $(M) Cleaning build residues…) @
 	$Q rm -rf $(BUILD_DIR)
 	$Q rm -rf $(NODE_DIR)
+	$Q rm -rf $(RUNTIME_DIR)
 	$Q rm -f openapitools.json
 	$Q rm -f package.json
 	$Q rm -f package-lock.json
@@ -68,9 +60,10 @@ get-openapi-generator: get-yarn ;$(info $(M) [Yarn] Installing openapi-generator
 #######
 
 BUILD_DIR = build
+RUNTIME_DIR = runtime
 
 # use "heads/master" to build from latest
-SDK_OPENAPI_VERSION = "tags/v0.52.5"
+SDK_OPENAPI_VERSION = tags/v0.52.5
 SDK_OPENAPI_SPEC = "https://raw.githubusercontent.com/kowabunga-cloud/openapi/refs/$(SDK_OPENAPI_VERSION)/openapi.yaml"
 SDK_GENERATOR = python
 SDK_PKG_NAME = kowabunga
@@ -81,27 +74,32 @@ sdk: get-openapi-generator ; $(info $(M) [OpenAPIv3] Generate Python SDK client 
 	  -g $(SDK_GENERATOR) \
 	  --package-name $(SDK_PKG_NAME) \
 	  --openapi-normalizer KEEP_ONLY_FIRST_TAG_IN_OPERATION=true \
-	  -p withGoMod=false \
+	  -p packageVersion=$(SDK_OPENAPI_VERSION:tags/v%=%) \
+	  -p packageUrl="$(PACKAGE_URL)" \
 	  -i $(SDK_OPENAPI_SPEC) \
 	  -o $(BUILD_DIR) \
 	  $(OUT)
-	# $Q sed -i 's%openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"%%g' $(BUILD_DIR)/test/*.go
-	# $Q sed -i 's%openapiclient\.%%' $(BUILD_DIR)/test/*.go
-	# $Q sed -i 's%openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"%kowabunga "$(PACKAGE_NAME)"%g' $(BUILD_DIR)/docs/*.md
-	# $Q sed -i 's%openapiclient\.%kowabunga\.%' $(BUILD_DIR)/docs/*.md
-	# $Q sed -i 's%raw\.githubusercontent\.com%your_kowabunga_kahuna_server%' $(BUILD_DIR)/docs/*.md
-	# $Q rm -f $(BUILD_DIR)/.gitignore
-	# $Q rm -rf $(BUILD_DIR)/.openapi-generator
-	# $Q rm -f $(BUILD_DIR)/.openapi-generator-ignore
-	# $Q rm -f $(BUILD_DIR)/.travis.yml
-	# $Q rm -rf $(BUILD_DIR)/api
-	# $Q rm -f $(BUILD_DIR)/git_push.sh
-	# $Q rm -rf $(BUILD_DIR)/README.md
-	# $Q cp -rf $(BUILD_DIR)/docs .
-	# $Q cp -rf $(BUILD_DIR)/test/*.go .
-	# $Q cp -rf $(BUILD_DIR)/*.go .
-	# $Q rm -rf $(BUILD_DIR)
+	$Q sed -i 's%GIT_USER_ID%$(PACKAGE_NAMESPACE)%' $(BUILD_DIR)/pyproject.toml $(BUILD_DIR)/README.md
+	$Q sed -i 's%GIT_REPO_ID%$(PACKAGE_NAME)%' $(BUILD_DIR)/pyproject.toml $(BUILD_DIR)/README.md
+	$Q rm -f $(BUILD_DIR)/.gitignore
+	$Q rm -f $(BUILD_DIR)/.gitlab-ci.yml
+	$Q rm -rf $(BUILD_DIR)/.openapi-generator
+	$Q rm -f $(BUILD_DIR)/.openapi-generator-ignore
+	$Q rm -f $(BUILD_DIR)/.travis.yml
+	$Q rm -f $(BUILD_DIR)/git_push.sh
+	$Q cp -f $(BUILD_DIR)/README.md API.md
+	$Q cp -rf $(BUILD_DIR)/docs .
+	$Q cp -rf $(BUILD_DIR)/kowabunga .
+	$Q cp -f $(BUILD_DIR)/pyproject.toml .
+	$Q cp -f $(BUILD_DIR)/requirements.txt .
+	$Q cp -f $(BUILD_DIR)/setup.{cfg,py} .
+	$Q cp -rf $(BUILD_DIR)/test .
+	$Q cp -f $(BUILD_DIR)/test-requirements.txt .
+	$Q cp -f $(BUILD_DIR)/tox.ini .
 
 .PHONY: tests
 tests: ; $(info $(M) [Go] Testing Kowabunga SDK…) @
-	#	$Q go test ./... -count=1
+	$Q python3 -m venv $(RUNTIME_DIR)
+	$Q $(RUNTIME_DIR)/bin/pip3 install -r requirements.txt
+	$Q $(RUNTIME_DIR)/bin/pip3 install -r test-requirements.txt
+	$Q $(RUNTIME_DIR)/bin/pytest --cov=$(SDK_PKG_NAME)
