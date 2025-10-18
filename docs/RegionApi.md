@@ -6,11 +6,13 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**create_kiwi**](RegionApi.md#create_kiwi) | **POST** /region/{regionId}/kiwi | 
 [**create_region**](RegionApi.md#create_region) | **POST** /region | 
+[**create_region_dns_record**](RegionApi.md#create_region_dns_record) | **POST** /region/{regionId}/record | 
 [**create_storage_nfs**](RegionApi.md#create_storage_nfs) | **POST** /region/{regionId}/nfs | 
 [**create_storage_pool**](RegionApi.md#create_storage_pool) | **POST** /region/{regionId}/pool | 
 [**create_v_net**](RegionApi.md#create_v_net) | **POST** /region/{regionId}/vnet | 
 [**create_zone**](RegionApi.md#create_zone) | **POST** /region/{regionId}/zone | 
 [**delete_region**](RegionApi.md#delete_region) | **DELETE** /region/{regionId} | 
+[**list_region_dns_records**](RegionApi.md#list_region_dns_records) | **GET** /region/{regionId}/records | 
 [**list_region_kiwis**](RegionApi.md#list_region_kiwis) | **GET** /region/{regionId}/kiwis | 
 [**list_region_storage_nfss**](RegionApi.md#list_region_storage_nfss) | **GET** /region/{regionId}/nfs | 
 [**list_region_storage_pools**](RegionApi.md#list_region_storage_pools) | **GET** /region/{regionId}/pools | 
@@ -193,6 +195,97 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** | Returns the newly created region object. |  -  |
+**400** | BadRequest error: Bad request (wrong input parameters). |  -  |
+**401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
+**403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**404** | NotFound error: Specified resource does not exist. |  -  |
+**409** | Conflict error: A similar resource already exists or resource is still being referenced somewhere. |  -  |
+**422** | UnprocessableEntity error: Server can&#39;t process request. |  -  |
+**507** | InsufficientResource error: Server can&#39;t allocate resources (logical quotas or physical limits hit). |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **create_region_dns_record**
+> DnsRecord create_region_dns_record(region_id, dns_record)
+
+Creates a new DNS record.
+
+### Example
+
+* Api Key Authentication (ApiKeyAuth):
+* Bearer (JWT) Authentication (BearerAuth):
+
+```python
+import kowabunga
+from kowabunga.models.dns_record import DnsRecord
+from kowabunga.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://raw.githubusercontent.com/api/v1
+# See configuration.py for a list of all supported configuration parameters.
+configuration = kowabunga.Configuration(
+    host = "https://raw.githubusercontent.com/api/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: ApiKeyAuth
+configuration.api_key['ApiKeyAuth'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
+
+# Configure Bearer authorization (JWT): BearerAuth
+configuration = kowabunga.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with kowabunga.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = kowabunga.RegionApi(api_client)
+    region_id = 'region_id_example' # str | The ID of the region.
+    dns_record = kowabunga.DnsRecord() # DnsRecord | DnsRecord payload.
+
+    try:
+        api_response = api_instance.create_region_dns_record(region_id, dns_record)
+        print("The response of RegionApi->create_region_dns_record:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling RegionApi->create_region_dns_record: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **region_id** | **str**| The ID of the region. | 
+ **dns_record** | [**DnsRecord**](DnsRecord.md)| DnsRecord payload. | 
+
+### Return type
+
+[**DnsRecord**](DnsRecord.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | Returns the newly created DNS record object. |  -  |
 **400** | BadRequest error: Bad request (wrong input parameters). |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
@@ -650,6 +743,90 @@ void (empty response body)
 **404** | NotFound error: Specified resource does not exist. |  -  |
 **409** | Conflict error: A similar resource already exists or resource is still being referenced somewhere. |  -  |
 **422** | UnprocessableEntity error: Server can&#39;t process request. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **list_region_dns_records**
+> List[str] list_region_dns_records(region_id)
+
+Returns the IDs of DNS record objects.
+
+### Example
+
+* Api Key Authentication (ApiKeyAuth):
+* Bearer (JWT) Authentication (BearerAuth):
+
+```python
+import kowabunga
+from kowabunga.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://raw.githubusercontent.com/api/v1
+# See configuration.py for a list of all supported configuration parameters.
+configuration = kowabunga.Configuration(
+    host = "https://raw.githubusercontent.com/api/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: ApiKeyAuth
+configuration.api_key['ApiKeyAuth'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
+
+# Configure Bearer authorization (JWT): BearerAuth
+configuration = kowabunga.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with kowabunga.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = kowabunga.RegionApi(api_client)
+    region_id = 'region_id_example' # str | The ID of the region.
+
+    try:
+        api_response = api_instance.list_region_dns_records(region_id)
+        print("The response of RegionApi->list_region_dns_records:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling RegionApi->list_region_dns_records: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **region_id** | **str**| The ID of the region. | 
+
+### Return type
+
+**List[str]**
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Returns an array of DNS record IDs. |  -  |
+**401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
+**403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**404** | NotFound error: Specified resource does not exist. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

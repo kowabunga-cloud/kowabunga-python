@@ -1,12 +1,12 @@
 [tool.poetry]
 name = "kowabunga"
-version = "0.52.5"
-description = "Kowabunga API documentation"
+version = "0.53.1"
+description = "Kowabunga API"
 authors = ["The Kowabunga Project <maintainers@kowabunga.cloud>"]
 license = "Apache 2.0"
 readme = "README.md"
 repository = "https://github.com/kowabunga-cloud/kowabunga-python"
-keywords = ["OpenAPI", "OpenAPI-Generator", "Kowabunga API documentation"]
+keywords = ["OpenAPI", "OpenAPI-Generator", "Kowabunga API"]
 include = ["kowabunga/py.typed"]
 
 [tool.poetry.dependencies]
