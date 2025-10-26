@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "kowabunga"
-version = "0.53.1"
+version = "0.53.2"
 description = "Kowabunga API"
 authors = ["The Kowabunga Project <maintainers@kowabunga.cloud>"]
 license = "Apache 2.0"

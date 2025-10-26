@@ -63,7 +63,7 @@ BUILD_DIR = build
 RUNTIME_DIR = runtime
 
 # use "heads/master" to build from latest
-SDK_OPENAPI_VERSION = tags/v0.53.1
+SDK_OPENAPI_VERSION = tags/v0.53.2
 SDK_OPENAPI_SPEC = "https://raw.githubusercontent.com/kowabunga-cloud/openapi/refs/$(SDK_OPENAPI_VERSION)/openapi.yaml"
 SDK_GENERATOR = python
 SDK_PKG_NAME = kowabunga

@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **id** | **str** | The region ID (auto-generated). | [optional] 
 **name** | **str** | The region name. | 
 **description** | **str** | The region description. | [optional] 
+**domain** | **str** | Region domain name (e.g. myregion.kowabunga.acme.com). | 
 
 ## Example
 
