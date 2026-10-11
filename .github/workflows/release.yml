@@ -1,9 +1,19 @@
 name: release
 
+# Publishes the SDK released by the OpenAPI update workflow (which creates the
+# Git tag and GitHub release), or, manually, an already released version.
 on:
-  push:
-    tags:
-      - '*'
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Released version (Git tag) to publish
+        required: true
+        type: string
+
+env:
+  TAG: ${{ github.event.release.tag_name || inputs.tag }}
 
 jobs:
   build:
@@ -13,6 +23,7 @@ jobs:
     steps:
     - uses: actions/checkout@v7
       with:
+        ref: ${{ env.TAG }}
         persist-credentials: false
     - name: Set up Python
       uses: actions/setup-python@v7
@@ -34,7 +45,6 @@ jobs:
 
   publish-to-pypi:
     name: Publish to PyPI
-    if: startsWith(github.ref, 'refs/tags/')  # only publish to PyPI on tag pushes
     needs:
     - build
     runs-on: ubuntu-26.04
@@ -75,14 +85,6 @@ jobs:
         inputs: >-
           ./dist/*.tar.gz
           ./dist/*.whl
-    - name: Create GitHub Release
-      env:
-        GITHUB_TOKEN: ${{ github.token }}
-      run: >-
-        gh release create
-        "$GITHUB_REF_NAME"
-        --repo "$GITHUB_REPOSITORY"
-        --notes ""
     - name: Upload artifact signatures to GitHub Release
       env:
         GITHUB_TOKEN: ${{ github.token }}
@@ -91,5 +93,6 @@ jobs:
       # sigstore-produced signatures and certificates.
       run: >-
         gh release upload
-        "$GITHUB_REF_NAME" dist/**
+        "$TAG" dist/**
         --repo "$GITHUB_REPOSITORY"
+        --clobber
