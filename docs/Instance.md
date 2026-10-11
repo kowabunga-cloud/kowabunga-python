@@ -13,6 +13,9 @@ Name | Type | Description | Notes
 **vcpus** | **int** | The virtual machine instance number of vCPUs. | 
 **adapters** | **List[str]** | a list of existing network adapters to be connected to the instance. | [optional] 
 **volumes** | **List[str]** | volumes list of existing storage volumes (i.e. disks) to be connected to the instance. | [optional] 
+**kwarantines** | **List[str]** | An optional list of existing Kwarantine anti-affinity group IDs. Only considered at instance creation time, to elect an initial host consistent with the referenced groups policies and register the instance as one of their members. Read-only afterwards, always reflecting current membership, which should be managed going forward via the Kwarantine webservices. | [optional] 
+**uefi** | **bool** | enable UEFI secure firmware (vs. legacy BIOS). | [optional] [default to True]
+**kmotion_enabled** | **bool** | Whether kMotion (live/cold host migration) is enabled for the virtual machine instance. When disabled, the instance remains bound to its original hosting node. | [optional] [default to True]
 
 ## Example
 

@@ -9,6 +9,7 @@ from kowabunga.api.kawaii_api import KawaiiApi
 from kowabunga.api.kiwi_api import KiwiApi
 from kowabunga.api.kompute_api import KomputeApi
 from kowabunga.api.konvey_api import KonveyApi
+from kowabunga.api.kwarantine_api import KwarantineApi
 from kowabunga.api.kylo_api import KyloApi
 from kowabunga.api.nfs_api import NfsApi
 from kowabunga.api.pool_api import PoolApi

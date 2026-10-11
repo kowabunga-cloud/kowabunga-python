@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **ceph_address** | **str** | Ceph Monitor(s) address or FQDN. | [optional] [default to 'localhost']
 **ceph_port** | **int** | Ceph Monitor(s) port (default 3300). | [optional] [default to 3300]
 **ceph_secret_uuid** | **str** | The libvirt secret UUID for CephX authentication. | [optional] 
-**cost** | [**Cost**](Cost.md) |  | [optional] 
+**cost** | [**Cost**](Cost.md) | Cost associated to the storage pool. | [optional] 
 **agents** | **List[str]** | a list of existing remote agents managing the storage pool. | 
 
 ## Example

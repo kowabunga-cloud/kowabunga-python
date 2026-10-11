@@ -5,6 +5,8 @@ All URIs are relative to *https://raw.githubusercontent.com/api/v1*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**delete_kaktus**](KaktusApi.md#delete_kaktus) | **DELETE** /kaktus/{kaktusId} | 
+[**disable_kaktus_maintenance**](KaktusApi.md#disable_kaktus_maintenance) | **PATCH** /kaktus/{kaktusId}/maintenance/disable | 
+[**enable_kaktus_maintenance**](KaktusApi.md#enable_kaktus_maintenance) | **PATCH** /kaktus/{kaktusId}/maintenance/enable | 
 [**list_kaktus_instances**](KaktusApi.md#list_kaktus_instances) | **GET** /kaktus/{kaktusId}/instances | 
 [**list_kaktuss**](KaktusApi.md#list_kaktuss) | **GET** /kaktus | 
 [**read_kaktus**](KaktusApi.md#read_kaktus) | **GET** /kaktus/{kaktusId} | 
@@ -92,6 +94,172 @@ void (empty response body)
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 **409** | Conflict error: A similar resource already exists or resource is still being referenced somewhere. |  -  |
+**422** | UnprocessableEntity error: Server can&#39;t process request. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **disable_kaktus_maintenance**
+> disable_kaktus_maintenance(kaktus_id)
+
+Performs a Kaktus computing node exit from maintenance mode.
+
+### Example
+
+* Api Key Authentication (ApiKeyAuth):
+* Bearer (JWT) Authentication (BearerAuth):
+
+```python
+import kowabunga
+from kowabunga.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://raw.githubusercontent.com/api/v1
+# See configuration.py for a list of all supported configuration parameters.
+configuration = kowabunga.Configuration(
+    host = "https://raw.githubusercontent.com/api/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: ApiKeyAuth
+configuration.api_key['ApiKeyAuth'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
+
+# Configure Bearer authorization (JWT): BearerAuth
+configuration = kowabunga.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with kowabunga.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = kowabunga.KaktusApi(api_client)
+    kaktus_id = 'kaktus_id_example' # str | The ID of the Kaktus computing node.
+
+    try:
+        api_instance.disable_kaktus_maintenance(kaktus_id)
+    except Exception as e:
+        print("Exception when calling KaktusApi->disable_kaktus_maintenance: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **kaktus_id** | **str**| The ID of the Kaktus computing node. | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The Kaktus computing node exit from maintenance mode is successful. |  -  |
+**401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
+**403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**404** | NotFound error: Specified resource does not exist. |  -  |
+**422** | UnprocessableEntity error: Server can&#39;t process request. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **enable_kaktus_maintenance**
+> enable_kaktus_maintenance(kaktus_id)
+
+Performs a Kaktus computing node entry into maintenance mode.
+
+### Example
+
+* Api Key Authentication (ApiKeyAuth):
+* Bearer (JWT) Authentication (BearerAuth):
+
+```python
+import kowabunga
+from kowabunga.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://raw.githubusercontent.com/api/v1
+# See configuration.py for a list of all supported configuration parameters.
+configuration = kowabunga.Configuration(
+    host = "https://raw.githubusercontent.com/api/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: ApiKeyAuth
+configuration.api_key['ApiKeyAuth'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
+
+# Configure Bearer authorization (JWT): BearerAuth
+configuration = kowabunga.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with kowabunga.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = kowabunga.KaktusApi(api_client)
+    kaktus_id = 'kaktus_id_example' # str | The ID of the Kaktus computing node.
+
+    try:
+        api_instance.enable_kaktus_maintenance(kaktus_id)
+    except Exception as e:
+        print("Exception when calling KaktusApi->enable_kaktus_maintenance: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **kaktus_id** | **str**| The ID of the Kaktus computing node. | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The Kaktus computing node entry into maintenance mode is successful. |  -  |
+**401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
+**403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**404** | NotFound error: Specified resource does not exist. |  -  |
 **422** | UnprocessableEntity error: Server can&#39;t process request. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

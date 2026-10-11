@@ -6,7 +6,7 @@ A Kaktus computing node capability.
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**cpu** | [**KaktusCPU**](KaktusCPU.md) |  | 
+**cpu** | [**KaktusCPU**](KaktusCPU.md) | The Kaktus computing node CPU characteristics. | 
 **memory** | **int** | The Kaktus computing node memory size (bytes). | 
 
 ## Example
