@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ingress** | [**List[KawaiiFirewallIngressRule]**](KawaiiFirewallIngressRule.md) | The Kawaii public firewall list of ingress rules. Kawaii default policy is to drop all incoming traffic, including ICMP. Specified ruleset will be explicitly accepted. | [optional] 
 **egress_policy** | **str** | The default public traffic egress policy. | [optional] [default to 'accept']
-**egress** | [**List[KawaiiFirewallEgressRule]**](KawaiiFirewallEgressRule.md) | The Kawaii public firewall list of egress rules. Kawaii default policy is to accept all outgoing traffic, including ICMP. Specified ruleset will be explicitly dropped if egress_policy is set to accept, and explicitly accepted if egress policy is set to drop.. | [optional] 
+**egress** | [**List[KawaiiFirewallEgressRule]**](KawaiiFirewallEgressRule.md) | The Kawaii public firewall list of egress rules. Kawaii default policy is to accept all outgoing traffic, including ICMP. Specified ruleset will be explicitly dropped if egress_policy is set to accept, and explicitly accepted if egress policy is set to drop. | [optional] 
 
 ## Example
 

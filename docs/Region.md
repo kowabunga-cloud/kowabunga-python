@@ -6,7 +6,7 @@ A region.
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **str** | The region ID (auto-generated). | [optional] 
+**id** | **str** | The region ID (auto-generated) (read-only). | [optional] [readonly] 
 **name** | **str** | The region name. | 
 **description** | **str** | The region description. | [optional] 
 **domain** | **str** | Region domain name (e.g. myregion.kowabunga.acme.com). | 

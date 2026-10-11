@@ -6,11 +6,11 @@ A Kowabunga Konvey is a layer-4 network load-balancer used to distribute service
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **str** | The Konvey (Kowabunga Network Load-Balancer) ID (auto-generated). | [optional] 
-**name** | **str** | The Konvey (Kowabunga Network Load-Balancer) name. | [optional] 
+**id** | **str** | The Konvey (Kowabunga Network Load-Balancer) ID (auto-generated) (read-only). | [optional] [readonly] 
+**name** | **str** | The Konvey (Kowabunga Network Load-Balancer) name, prefixed with konvey- (project name if unspecified). | [optional] 
 **description** | **str** | The Konvey (Kowabunga Network Load-Balancer) description. | [optional] 
-**vip** | **str** | The Konvey (Kowabunga Network Load-Balancer) assigned private virtual IP address (read-only). | [optional] 
-**failover** | **bool** | Whether Konvey (Kowabunga Network Load-Balancer) must be deployed in a highly-available replicated state to support service failover. | [optional] [default to True]
+**vip** | **str** | The Konvey (Kowabunga Network Load-Balancer) assigned private virtual IP address (read-only). | [optional] [readonly] 
+**failover** | **bool** | Whether Konvey (Kowabunga Network Load-Balancer) must be deployed in a highly-available replicated state to support service failover. Can only be set at creation time, ignored on updates. | [optional] [default to True]
 **endpoints** | [**List[KonveyEndpoint]**](KonveyEndpoint.md) | The Konvey (Kowabunga Network Load-Balancer) list of load-balanced endpoints. | 
 
 ## Example

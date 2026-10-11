@@ -23,7 +23,7 @@ Method | HTTP request | Description
 [**list_project_region_kawaiis**](ProjectApi.md#list_project_region_kawaiis) | **GET** /project/{projectId}/region/{regionId}/kawaiis | 
 [**list_project_region_komputes**](ProjectApi.md#list_project_region_komputes) | **GET** /project/{projectId}/region/{regionId}/komputes | 
 [**list_project_region_konveys**](ProjectApi.md#list_project_region_konveys) | **GET** /project/{projectId}/region/{regionId}/konveys | 
-[**list_project_region_kylos**](ProjectApi.md#list_project_region_kylos) | **GET** /project/{projectId}/region/{regionId}/kylo | 
+[**list_project_region_kylos**](ProjectApi.md#list_project_region_kylos) | **GET** /project/{projectId}/region/{regionId}/kylos | 
 [**list_project_region_volumes**](ProjectApi.md#list_project_region_volumes) | **GET** /project/{projectId}/region/{regionId}/volumes | 
 [**list_project_zone_instances**](ProjectApi.md#list_project_zone_instances) | **GET** /project/{projectId}/zone/{zoneId}/instances | 
 [**list_project_zone_komputes**](ProjectApi.md#list_project_zone_komputes) | **GET** /project/{projectId}/zone/{zoneId}/komputes | 
@@ -78,7 +78,7 @@ with kowabunga.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = kowabunga.ProjectApi(api_client)
     project = kowabunga.Project() # Project | Project payload.
-    subnet_size = 56 # int | The minimum VPC subnet size to be affected to the project. WARNING, this cannot be changed later. (optional)
+    subnet_size = 26 # int | The minimum VPC subnet size (CIDR prefix length) to be assigned to the project. WARNING, this cannot be changed later. (optional) (default to 26)
 
     try:
         api_response = api_instance.create_project(project, subnet_size=subnet_size)
@@ -96,7 +96,7 @@ with kowabunga.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **project** | [**Project**](Project.md)| Project payload. | 
- **subnet_size** | **int**| The minimum VPC subnet size to be affected to the project. WARNING, this cannot be changed later. | [optional] 
+ **subnet_size** | **int**| The minimum VPC subnet size (CIDR prefix length) to be assigned to the project. WARNING, this cannot be changed later. | [optional] [default to 26]
 
 ### Return type
 
@@ -119,6 +119,7 @@ Name | Type | Description  | Notes
 **400** | BadRequest error: Bad request (wrong input parameters). |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 **409** | Conflict error: A similar resource already exists or resource is still being referenced somewhere. |  -  |
 **422** | UnprocessableEntity error: Server can&#39;t process request. |  -  |
@@ -210,6 +211,7 @@ Name | Type | Description  | Notes
 **400** | BadRequest error: Bad request (wrong input parameters). |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 **409** | Conflict error: A similar resource already exists or resource is still being referenced somewhere. |  -  |
 **422** | UnprocessableEntity error: Server can&#39;t process request. |  -  |
@@ -301,6 +303,7 @@ Name | Type | Description  | Notes
 **400** | BadRequest error: Bad request (wrong input parameters). |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 **409** | Conflict error: A similar resource already exists or resource is still being referenced somewhere. |  -  |
 **422** | UnprocessableEntity error: Server can&#39;t process request. |  -  |
@@ -394,6 +397,7 @@ Name | Type | Description  | Notes
 **400** | BadRequest error: Bad request (wrong input parameters). |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 **409** | Conflict error: A similar resource already exists or resource is still being referenced somewhere. |  -  |
 **422** | UnprocessableEntity error: Server can&#39;t process request. |  -  |
@@ -487,6 +491,7 @@ Name | Type | Description  | Notes
 **400** | BadRequest error: Bad request (wrong input parameters). |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 **409** | Conflict error: A similar resource already exists or resource is still being referenced somewhere. |  -  |
 **422** | UnprocessableEntity error: Server can&#39;t process request. |  -  |
@@ -541,7 +546,7 @@ with kowabunga.ApiClient(configuration) as api_client:
     kompute = kowabunga.Kompute() # Kompute | Kompute payload.
     pool_id = 'pool_id_example' # str | Storage pool ID (optional, region's default if unspecified). (optional)
     template_id = 'template_id_example' # str | Template to clone the storage volume from (optional, region's default if unspecified). (optional)
-    public = True # bool | Should Kompute be exposed over public Internet ? (a public IPv4 address will then be auto-assigned, default to false). (optional)
+    public = False # bool | Whether the Kompute should be exposed over public Internet (a public IPv4 address will then be auto-assigned). (optional) (default to False)
 
     try:
         api_response = api_instance.create_project_region_kompute(project_id, region_id, kompute, pool_id=pool_id, template_id=template_id, public=public)
@@ -563,7 +568,7 @@ Name | Type | Description  | Notes
  **kompute** | [**Kompute**](Kompute.md)| Kompute payload. | 
  **pool_id** | **str**| Storage pool ID (optional, region&#39;s default if unspecified). | [optional] 
  **template_id** | **str**| Template to clone the storage volume from (optional, region&#39;s default if unspecified). | [optional] 
- **public** | **bool**| Should Kompute be exposed over public Internet ? (a public IPv4 address will then be auto-assigned, default to false). | [optional] 
+ **public** | **bool**| Whether the Kompute should be exposed over public Internet (a public IPv4 address will then be auto-assigned). | [optional] [default to False]
 
 ### Return type
 
@@ -586,6 +591,7 @@ Name | Type | Description  | Notes
 **400** | BadRequest error: Bad request (wrong input parameters). |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 **409** | Conflict error: A similar resource already exists or resource is still being referenced somewhere. |  -  |
 **422** | UnprocessableEntity error: Server can&#39;t process request. |  -  |
@@ -679,6 +685,7 @@ Name | Type | Description  | Notes
 **400** | BadRequest error: Bad request (wrong input parameters). |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 **409** | Conflict error: A similar resource already exists or resource is still being referenced somewhere. |  -  |
 **422** | UnprocessableEntity error: Server can&#39;t process request. |  -  |
@@ -774,6 +781,7 @@ Name | Type | Description  | Notes
 **400** | BadRequest error: Bad request (wrong input parameters). |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 **409** | Conflict error: A similar resource already exists or resource is still being referenced somewhere. |  -  |
 **422** | UnprocessableEntity error: Server can&#39;t process request. |  -  |
@@ -871,6 +879,7 @@ Name | Type | Description  | Notes
 **400** | BadRequest error: Bad request (wrong input parameters). |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 **409** | Conflict error: A similar resource already exists or resource is still being referenced somewhere. |  -  |
 **422** | UnprocessableEntity error: Server can&#39;t process request. |  -  |
@@ -964,6 +973,7 @@ Name | Type | Description  | Notes
 **400** | BadRequest error: Bad request (wrong input parameters). |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 **409** | Conflict error: A similar resource already exists or resource is still being referenced somewhere. |  -  |
 **422** | UnprocessableEntity error: Server can&#39;t process request. |  -  |
@@ -1018,7 +1028,7 @@ with kowabunga.ApiClient(configuration) as api_client:
     kompute = kowabunga.Kompute() # Kompute | Kompute payload.
     pool_id = 'pool_id_example' # str | Storage pool ID (optional, region's default if unspecified). (optional)
     template_id = 'template_id_example' # str | Template to clone the storage volume from (optional, region's default if unspecified). (optional)
-    public = True # bool | Should Kompute be exposed over public Internet ? (a public IPv4 address will then be auto-assigned, default to false). (optional)
+    public = False # bool | Whether the Kompute should be exposed over public Internet (a public IPv4 address will then be auto-assigned). (optional) (default to False)
 
     try:
         api_response = api_instance.create_project_zone_kompute(project_id, zone_id, kompute, pool_id=pool_id, template_id=template_id, public=public)
@@ -1040,7 +1050,7 @@ Name | Type | Description  | Notes
  **kompute** | [**Kompute**](Kompute.md)| Kompute payload. | 
  **pool_id** | **str**| Storage pool ID (optional, region&#39;s default if unspecified). | [optional] 
  **template_id** | **str**| Template to clone the storage volume from (optional, region&#39;s default if unspecified). | [optional] 
- **public** | **bool**| Should Kompute be exposed over public Internet ? (a public IPv4 address will then be auto-assigned, default to false). | [optional] 
+ **public** | **bool**| Whether the Kompute should be exposed over public Internet (a public IPv4 address will then be auto-assigned). | [optional] [default to False]
 
 ### Return type
 
@@ -1063,6 +1073,7 @@ Name | Type | Description  | Notes
 **400** | BadRequest error: Bad request (wrong input parameters). |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 **409** | Conflict error: A similar resource already exists or resource is still being referenced somewhere. |  -  |
 **422** | UnprocessableEntity error: Server can&#39;t process request. |  -  |
@@ -1156,6 +1167,7 @@ Name | Type | Description  | Notes
 **400** | BadRequest error: Bad request (wrong input parameters). |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 **409** | Conflict error: A similar resource already exists or resource is still being referenced somewhere. |  -  |
 **422** | UnprocessableEntity error: Server can&#39;t process request. |  -  |
@@ -1241,6 +1253,7 @@ void (empty response body)
 **200** | The project has been successfully removed. |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 **409** | Conflict error: A similar resource already exists or resource is still being referenced somewhere. |  -  |
 **422** | UnprocessableEntity error: Server can&#39;t process request. |  -  |
@@ -1327,6 +1340,7 @@ Name | Type | Description  | Notes
 **200** | Returns an array of DNS record IDs. |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -1411,6 +1425,7 @@ Name | Type | Description  | Notes
 **200** | Returns an array of Kwarantine IDs. |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -1497,6 +1512,7 @@ Name | Type | Description  | Notes
 **200** | Returns an array of virtual machine instance IDs. |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -1583,6 +1599,7 @@ Name | Type | Description  | Notes
 **200** | Returns an array of Kawaii IDs. |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -1669,6 +1686,7 @@ Name | Type | Description  | Notes
 **200** | Returns an array of Kompute IDs. |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -1755,6 +1773,7 @@ Name | Type | Description  | Notes
 **200** | Returns an array of Konvey (Kowabunga Network Load-Balancer) IDs. |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -1843,6 +1862,7 @@ Name | Type | Description  | Notes
 **200** | Returns an array of Kylo IDs. |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -1929,6 +1949,7 @@ Name | Type | Description  | Notes
 **200** | Returns an array of storage volume IDs. |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -2015,6 +2036,7 @@ Name | Type | Description  | Notes
 **200** | Returns an array of virtual machine instance IDs. |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -2101,6 +2123,7 @@ Name | Type | Description  | Notes
 **200** | Returns an array of Kompute IDs. |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -2187,12 +2210,13 @@ Name | Type | Description  | Notes
 **200** | Returns an array of Konvey (Kowabunga Network Load-Balancer) IDs. |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_projects**
-> List[str] list_projects(subnet_size=subnet_size)
+> List[str] list_projects()
 
 Returns the IDs of project objects.
 
@@ -2232,10 +2256,9 @@ configuration = kowabunga.Configuration(
 with kowabunga.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = kowabunga.ProjectApi(api_client)
-    subnet_size = 56 # int | The minimum VPC subnet size to be affected to the project. WARNING, this cannot be changed later. (optional)
 
     try:
-        api_response = api_instance.list_projects(subnet_size=subnet_size)
+        api_response = api_instance.list_projects()
         print("The response of ProjectApi->list_projects:\n")
         pprint(api_response)
     except Exception as e:
@@ -2246,10 +2269,7 @@ with kowabunga.ApiClient(configuration) as api_client:
 
 ### Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **subnet_size** | **int**| The minimum VPC subnet size to be affected to the project. WARNING, this cannot be changed later. | [optional] 
+This endpoint does not need any parameter.
 
 ### Return type
 
@@ -2271,6 +2291,7 @@ Name | Type | Description  | Notes
 **200** | Returns an array of project IDs. |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -2355,6 +2376,7 @@ Name | Type | Description  | Notes
 **200** | Returns the project object. |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -2440,6 +2462,7 @@ Name | Type | Description  | Notes
 **200** | Returns the resource cost object. |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -2525,12 +2548,13 @@ Name | Type | Description  | Notes
 **200** | Returns the global project resource quotas/usage (0 for unlimited) object. |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_project**
-> Project update_project(project_id, project)
+> Project update_project(project_id, project_update)
 
 Updates a project configuration.
 
@@ -2542,6 +2566,7 @@ Updates a project configuration.
 ```python
 import kowabunga
 from kowabunga.models.project import Project
+from kowabunga.models.project_update import ProjectUpdate
 from kowabunga.rest import ApiException
 from pprint import pprint
 
@@ -2572,10 +2597,10 @@ with kowabunga.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = kowabunga.ProjectApi(api_client)
     project_id = 'project_id_example' # str | The ID of the project.
-    project = kowabunga.Project() # Project | Project payload.
+    project_update = kowabunga.ProjectUpdate() # ProjectUpdate | ProjectUpdate payload.
 
     try:
-        api_response = api_instance.update_project(project_id, project)
+        api_response = api_instance.update_project(project_id, project_update)
         print("The response of ProjectApi->update_project:\n")
         pprint(api_response)
     except Exception as e:
@@ -2590,7 +2615,7 @@ with kowabunga.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **project_id** | **str**| The ID of the project. | 
- **project** | [**Project**](Project.md)| Project payload. | 
+ **project_update** | [**ProjectUpdate**](ProjectUpdate.md)| ProjectUpdate payload. | 
 
 ### Return type
 
@@ -2613,6 +2638,7 @@ Name | Type | Description  | Notes
 **400** | BadRequest error: Bad request (wrong input parameters). |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 **422** | UnprocessableEntity error: Server can&#39;t process request. |  -  |
 **507** | InsufficientResource error: Server can&#39;t allocate resources (logical quotas or physical limits hit). |  -  |

@@ -1,6 +1,6 @@
 [project]
 name = "kowabunga"
-version = "0.57.1"
+version = "0.58.0"
 description = "Kowabunga API"
 authors = [
   {name = "The Kowabunga Project",email = "maintainers@kowabunga.cloud"},

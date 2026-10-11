@@ -6,13 +6,13 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**create_kawaii_ip_sec**](KawaiiApi.md#create_kawaii_ip_sec) | **POST** /kawaii/{kawaiiId}/ipsec | 
 [**delete_kawaii**](KawaiiApi.md#delete_kawaii) | **DELETE** /kawaii/{kawaiiId} | 
-[**delete_kawaii_ip_sec**](KawaiiApi.md#delete_kawaii_ip_sec) | **DELETE** /kawaii/{kawaiiId}/ipsec/{KawaiiIpSecId} | 
+[**delete_kawaii_ip_sec**](KawaiiApi.md#delete_kawaii_ip_sec) | **DELETE** /kawaii/{kawaiiId}/ipsec/{kawaiiIpSecId} | 
 [**list_kawaii_ip_secs**](KawaiiApi.md#list_kawaii_ip_secs) | **GET** /kawaii/{kawaiiId}/ipsec | 
 [**list_kawaiis**](KawaiiApi.md#list_kawaiis) | **GET** /kawaii | 
 [**read_kawaii**](KawaiiApi.md#read_kawaii) | **GET** /kawaii/{kawaiiId} | 
-[**read_kawaii_ip_sec**](KawaiiApi.md#read_kawaii_ip_sec) | **GET** /kawaii/{kawaiiId}/ipsec/{KawaiiIpSecId} | 
+[**read_kawaii_ip_sec**](KawaiiApi.md#read_kawaii_ip_sec) | **GET** /kawaii/{kawaiiId}/ipsec/{kawaiiIpSecId} | 
 [**update_kawaii**](KawaiiApi.md#update_kawaii) | **PUT** /kawaii/{kawaiiId} | 
-[**update_kawaii_ip_sec**](KawaiiApi.md#update_kawaii_ip_sec) | **PUT** /kawaii/{kawaiiId}/ipsec/{KawaiiIpSecId} | 
+[**update_kawaii_ip_sec**](KawaiiApi.md#update_kawaii_ip_sec) | **PUT** /kawaii/{kawaiiId}/ipsec/{kawaiiIpSecId} | 
 
 
 # **create_kawaii_ip_sec**
@@ -99,6 +99,7 @@ Name | Type | Description  | Notes
 **400** | BadRequest error: Bad request (wrong input parameters). |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 **409** | Conflict error: A similar resource already exists or resource is still being referenced somewhere. |  -  |
 **422** | UnprocessableEntity error: Server can&#39;t process request. |  -  |
@@ -184,6 +185,7 @@ void (empty response body)
 **200** | The Kawaii has been successfully removed. |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 **409** | Conflict error: A similar resource already exists or resource is still being referenced somewhere. |  -  |
 **422** | UnprocessableEntity error: Server can&#39;t process request. |  -  |
@@ -270,6 +272,7 @@ void (empty response body)
 **200** | The Kawaii IPsec connection has been successfully removed. |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 **409** | Conflict error: A similar resource already exists or resource is still being referenced somewhere. |  -  |
 **422** | UnprocessableEntity error: Server can&#39;t process request. |  -  |
@@ -356,6 +359,7 @@ Name | Type | Description  | Notes
 **200** | Returns an array of Kawaii IPsec connection IDs. |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -435,6 +439,7 @@ This endpoint does not need any parameter.
 **200** | Returns an array of Kawaii IDs. |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -519,6 +524,7 @@ Name | Type | Description  | Notes
 **200** | Returns the Kawaii object. |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -606,12 +612,13 @@ Name | Type | Description  | Notes
 **200** | Returns the Kawaii IPsec connection object. |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_kawaii**
-> Kawaii update_kawaii(kawaii_id, kawaii)
+> Kawaii update_kawaii(kawaii_id, kawaii_update)
 
 Updates a Kawaii configuration.
 
@@ -623,6 +630,7 @@ Updates a Kawaii configuration.
 ```python
 import kowabunga
 from kowabunga.models.kawaii import Kawaii
+from kowabunga.models.kawaii_update import KawaiiUpdate
 from kowabunga.rest import ApiException
 from pprint import pprint
 
@@ -653,10 +661,10 @@ with kowabunga.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = kowabunga.KawaiiApi(api_client)
     kawaii_id = 'kawaii_id_example' # str | The ID of the Kawaii.
-    kawaii = kowabunga.Kawaii() # Kawaii | Kawaii payload.
+    kawaii_update = kowabunga.KawaiiUpdate() # KawaiiUpdate | KawaiiUpdate payload.
 
     try:
-        api_response = api_instance.update_kawaii(kawaii_id, kawaii)
+        api_response = api_instance.update_kawaii(kawaii_id, kawaii_update)
         print("The response of KawaiiApi->update_kawaii:\n")
         pprint(api_response)
     except Exception as e:
@@ -671,7 +679,7 @@ with kowabunga.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **kawaii_id** | **str**| The ID of the Kawaii. | 
- **kawaii** | [**Kawaii**](Kawaii.md)| Kawaii payload. | 
+ **kawaii_update** | [**KawaiiUpdate**](KawaiiUpdate.md)| KawaiiUpdate payload. | 
 
 ### Return type
 
@@ -694,6 +702,7 @@ Name | Type | Description  | Notes
 **400** | BadRequest error: Bad request (wrong input parameters). |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 **422** | UnprocessableEntity error: Server can&#39;t process request. |  -  |
 **507** | InsufficientResource error: Server can&#39;t allocate resources (logical quotas or physical limits hit). |  -  |
@@ -701,7 +710,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_kawaii_ip_sec**
-> KawaiiIpSec update_kawaii_ip_sec(kawaii_id, kawaii_ip_sec_id, kawaii_ip_sec)
+> KawaiiIpSec update_kawaii_ip_sec(kawaii_id, kawaii_ip_sec_id, kawaii_ip_sec_update)
 
 Updates a Kawaii IPsec connection configuration.
 
@@ -713,6 +722,7 @@ Updates a Kawaii IPsec connection configuration.
 ```python
 import kowabunga
 from kowabunga.models.kawaii_ip_sec import KawaiiIpSec
+from kowabunga.models.kawaii_ip_sec_update import KawaiiIpSecUpdate
 from kowabunga.rest import ApiException
 from pprint import pprint
 
@@ -744,10 +754,10 @@ with kowabunga.ApiClient(configuration) as api_client:
     api_instance = kowabunga.KawaiiApi(api_client)
     kawaii_id = 'kawaii_id_example' # str | The ID of the Kawaii.
     kawaii_ip_sec_id = 'kawaii_ip_sec_id_example' # str | The ID of the Kawaii IPsec connection.
-    kawaii_ip_sec = kowabunga.KawaiiIpSec() # KawaiiIpSec | KawaiiIpSec payload.
+    kawaii_ip_sec_update = kowabunga.KawaiiIpSecUpdate() # KawaiiIpSecUpdate | KawaiiIpSecUpdate payload.
 
     try:
-        api_response = api_instance.update_kawaii_ip_sec(kawaii_id, kawaii_ip_sec_id, kawaii_ip_sec)
+        api_response = api_instance.update_kawaii_ip_sec(kawaii_id, kawaii_ip_sec_id, kawaii_ip_sec_update)
         print("The response of KawaiiApi->update_kawaii_ip_sec:\n")
         pprint(api_response)
     except Exception as e:
@@ -763,7 +773,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **kawaii_id** | **str**| The ID of the Kawaii. | 
  **kawaii_ip_sec_id** | **str**| The ID of the Kawaii IPsec connection. | 
- **kawaii_ip_sec** | [**KawaiiIpSec**](KawaiiIpSec.md)| KawaiiIpSec payload. | 
+ **kawaii_ip_sec_update** | [**KawaiiIpSecUpdate**](KawaiiIpSecUpdate.md)| KawaiiIpSecUpdate payload. | 
 
 ### Return type
 
@@ -786,6 +796,7 @@ Name | Type | Description  | Notes
 **400** | BadRequest error: Bad request (wrong input parameters). |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 **422** | UnprocessableEntity error: Server can&#39;t process request. |  -  |
 **507** | InsufficientResource error: Server can&#39;t allocate resources (logical quotas or physical limits hit). |  -  |

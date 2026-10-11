@@ -6,7 +6,7 @@ A virtual machine instance kMotion plan.
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **str** | The kMotion plan ID (auto-generated). | [optional] 
+**id** | **str** | The kMotion plan ID (auto-generated) (read-only). | [optional] [readonly] 
 **instance** | **str** | The ID of the virtual machine instance this kMotion plan applies to. | 
 **source** | **str** | The ID of the Kaktus computing node currently hosting the instance. | 
 **target** | **str** | The ID of the Kaktus computing node elected to host the instance once the kMotion completes. | 

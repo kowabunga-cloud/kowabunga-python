@@ -8,7 +8,7 @@ Method | HTTP request | Description
 [**disable_kaktus_maintenance**](KaktusApi.md#disable_kaktus_maintenance) | **PATCH** /kaktus/{kaktusId}/maintenance/disable | 
 [**enable_kaktus_maintenance**](KaktusApi.md#enable_kaktus_maintenance) | **PATCH** /kaktus/{kaktusId}/maintenance/enable | 
 [**list_kaktus_instances**](KaktusApi.md#list_kaktus_instances) | **GET** /kaktus/{kaktusId}/instances | 
-[**list_kaktuss**](KaktusApi.md#list_kaktuss) | **GET** /kaktus | 
+[**list_kaktuses**](KaktusApi.md#list_kaktuses) | **GET** /kaktus | 
 [**read_kaktus**](KaktusApi.md#read_kaktus) | **GET** /kaktus/{kaktusId} | 
 [**read_kaktus_caps**](KaktusApi.md#read_kaktus_caps) | **GET** /kaktus/{kaktusId}/caps | 
 [**update_kaktus**](KaktusApi.md#update_kaktus) | **PUT** /kaktus/{kaktusId} | 
@@ -92,6 +92,7 @@ void (empty response body)
 **200** | The Kaktus computing node has been successfully removed. |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 **409** | Conflict error: A similar resource already exists or resource is still being referenced somewhere. |  -  |
 **422** | UnprocessableEntity error: Server can&#39;t process request. |  -  |
@@ -176,6 +177,7 @@ void (empty response body)
 **200** | The Kaktus computing node exit from maintenance mode is successful. |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 **422** | UnprocessableEntity error: Server can&#39;t process request. |  -  |
 
@@ -259,6 +261,7 @@ void (empty response body)
 **200** | The Kaktus computing node entry into maintenance mode is successful. |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 **422** | UnprocessableEntity error: Server can&#39;t process request. |  -  |
 
@@ -344,12 +347,13 @@ Name | Type | Description  | Notes
 **200** | Returns an array of virtual machine instance IDs. |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **list_kaktuss**
-> List[str] list_kaktuss()
+# **list_kaktuses**
+> List[str] list_kaktuses()
 
 Returns the IDs of Kaktus computing node objects.
 
@@ -391,11 +395,11 @@ with kowabunga.ApiClient(configuration) as api_client:
     api_instance = kowabunga.KaktusApi(api_client)
 
     try:
-        api_response = api_instance.list_kaktuss()
-        print("The response of KaktusApi->list_kaktuss:\n")
+        api_response = api_instance.list_kaktuses()
+        print("The response of KaktusApi->list_kaktuses:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling KaktusApi->list_kaktuss: %s\n" % e)
+        print("Exception when calling KaktusApi->list_kaktuses: %s\n" % e)
 ```
 
 
@@ -424,6 +428,7 @@ This endpoint does not need any parameter.
 **200** | Returns an array of Kaktus computing node IDs. |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -508,6 +513,7 @@ Name | Type | Description  | Notes
 **200** | Returns the Kaktus computing node object. |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -593,12 +599,13 @@ Name | Type | Description  | Notes
 **200** | Returns the Kaktus computing node capability object. |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_kaktus**
-> Kaktus update_kaktus(kaktus_id, kaktus)
+> Kaktus update_kaktus(kaktus_id, kaktus_update)
 
 Updates a Kaktus computing node configuration.
 
@@ -610,6 +617,7 @@ Updates a Kaktus computing node configuration.
 ```python
 import kowabunga
 from kowabunga.models.kaktus import Kaktus
+from kowabunga.models.kaktus_update import KaktusUpdate
 from kowabunga.rest import ApiException
 from pprint import pprint
 
@@ -640,10 +648,10 @@ with kowabunga.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = kowabunga.KaktusApi(api_client)
     kaktus_id = 'kaktus_id_example' # str | The ID of the Kaktus computing node.
-    kaktus = kowabunga.Kaktus() # Kaktus | Kaktus payload.
+    kaktus_update = kowabunga.KaktusUpdate() # KaktusUpdate | KaktusUpdate payload.
 
     try:
-        api_response = api_instance.update_kaktus(kaktus_id, kaktus)
+        api_response = api_instance.update_kaktus(kaktus_id, kaktus_update)
         print("The response of KaktusApi->update_kaktus:\n")
         pprint(api_response)
     except Exception as e:
@@ -658,7 +666,7 @@ with kowabunga.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **kaktus_id** | **str**| The ID of the Kaktus computing node. | 
- **kaktus** | [**Kaktus**](Kaktus.md)| Kaktus payload. | 
+ **kaktus_update** | [**KaktusUpdate**](KaktusUpdate.md)| KaktusUpdate payload. | 
 
 ### Return type
 
@@ -681,6 +689,7 @@ Name | Type | Description  | Notes
 **400** | BadRequest error: Bad request (wrong input parameters). |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 **422** | UnprocessableEntity error: Server can&#39;t process request. |  -  |
 **507** | InsufficientResource error: Server can&#39;t allocate resources (logical quotas or physical limits hit). |  -  |

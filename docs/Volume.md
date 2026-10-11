@@ -6,11 +6,11 @@ A storage volume.
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **str** | The storage volume ID (auto-generated). | [optional] 
+**id** | **str** | The storage volume ID (auto-generated) (read-only). | [optional] [readonly] 
 **name** | **str** | The storage volume name. | 
 **description** | **str** | The storage volume description. | [optional] 
-**type** | **str** | The storage volume type. | 
-**size** | **int** | The storage volume size (in bytes). | 
+**type** | **str** | The storage volume type. Can only be set at creation time, ignored on updates. | 
+**size** | **int** | The storage volume size (in bytes), can only be increased. | 
 
 ## Example
 

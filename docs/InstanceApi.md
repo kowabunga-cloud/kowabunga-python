@@ -103,6 +103,7 @@ void (empty response body)
 **400** | BadRequest error: Bad request (wrong input parameters). |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 **422** | UnprocessableEntity error: Server can&#39;t process request. |  -  |
 
@@ -186,6 +187,7 @@ void (empty response body)
 **200** | The virtual machine instance has been successfully removed. |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 **409** | Conflict error: A similar resource already exists or resource is still being referenced somewhere. |  -  |
 **422** | UnprocessableEntity error: Server can&#39;t process request. |  -  |
@@ -268,6 +270,7 @@ This endpoint does not need any parameter.
 **200** | Returns an array of virtual machine instance IDs. |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -356,6 +359,7 @@ Name | Type | Description  | Notes
 **400** | BadRequest error: Bad request (wrong input parameters). |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 **409** | Conflict error: A similar resource already exists or resource is still being referenced somewhere. |  -  |
 **422** | UnprocessableEntity error: Server can&#39;t process request. |  -  |
@@ -444,6 +448,7 @@ Name | Type | Description  | Notes
 **200** | Returns the virtual machine instance object. |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -529,6 +534,7 @@ Name | Type | Description  | Notes
 **200** | Returns the virtual machine instance remote access characteristics object. |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -614,6 +620,7 @@ Name | Type | Description  | Notes
 **200** | Returns the virtual machine instance state object. |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -696,6 +703,7 @@ void (empty response body)
 **200** | The virtual machine instance software reboot is successful. |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 **422** | UnprocessableEntity error: Server can&#39;t process request. |  -  |
 
@@ -779,6 +787,7 @@ void (empty response body)
 **200** | The virtual machine instance hardware reset is successful. |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 **422** | UnprocessableEntity error: Server can&#39;t process request. |  -  |
 
@@ -862,6 +871,7 @@ void (empty response body)
 **200** | The virtual machine instance software PM resume is successful. |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 **422** | UnprocessableEntity error: Server can&#39;t process request. |  -  |
 
@@ -945,6 +955,7 @@ void (empty response body)
 **200** | The virtual machine instance software shutdown is successful. |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 **422** | UnprocessableEntity error: Server can&#39;t process request. |  -  |
 
@@ -1028,6 +1039,7 @@ void (empty response body)
 **200** | The virtual machine instance hardware boot-up is successful. |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 **422** | UnprocessableEntity error: Server can&#39;t process request. |  -  |
 
@@ -1111,6 +1123,7 @@ void (empty response body)
 **200** | The virtual machine instance hardware stop is successful. |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 **422** | UnprocessableEntity error: Server can&#39;t process request. |  -  |
 
@@ -1194,13 +1207,14 @@ void (empty response body)
 **200** | The virtual machine instance software PM suspend is successful. |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 **422** | UnprocessableEntity error: Server can&#39;t process request. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_instance**
-> Instance update_instance(instance_id, instance)
+> Instance update_instance(instance_id, instance_update)
 
 Updates a virtual machine instance configuration.
 
@@ -1212,6 +1226,7 @@ Updates a virtual machine instance configuration.
 ```python
 import kowabunga
 from kowabunga.models.instance import Instance
+from kowabunga.models.instance_update import InstanceUpdate
 from kowabunga.rest import ApiException
 from pprint import pprint
 
@@ -1242,10 +1257,10 @@ with kowabunga.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = kowabunga.InstanceApi(api_client)
     instance_id = 'instance_id_example' # str | The ID of the virtual machine instance.
-    instance = kowabunga.Instance() # Instance | Instance payload.
+    instance_update = kowabunga.InstanceUpdate() # InstanceUpdate | InstanceUpdate payload.
 
     try:
-        api_response = api_instance.update_instance(instance_id, instance)
+        api_response = api_instance.update_instance(instance_id, instance_update)
         print("The response of InstanceApi->update_instance:\n")
         pprint(api_response)
     except Exception as e:
@@ -1260,7 +1275,7 @@ with kowabunga.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **instance_id** | **str**| The ID of the virtual machine instance. | 
- **instance** | [**Instance**](Instance.md)| Instance payload. | 
+ **instance_update** | [**InstanceUpdate**](InstanceUpdate.md)| InstanceUpdate payload. | 
 
 ### Return type
 
@@ -1283,6 +1298,7 @@ Name | Type | Description  | Notes
 **400** | BadRequest error: Bad request (wrong input parameters). |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 **422** | UnprocessableEntity error: Server can&#39;t process request. |  -  |
 **507** | InsufficientResource error: Server can&#39;t allocate resources (logical quotas or physical limits hit). |  -  |

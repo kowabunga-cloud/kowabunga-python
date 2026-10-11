@@ -6,7 +6,7 @@ A Kowabunga users team.
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **str** | The Kowabunga users team ID (auto-generated). | [optional] 
+**id** | **str** | The Kowabunga users team ID (auto-generated) (read-only). | [optional] [readonly] 
 **name** | **str** | The Kowabunga users team name. | 
 **description** | **str** | The Kowabunga users team description. | [optional] 
 **users** | **List[str]** | List of user IDs that are part of the team. | 

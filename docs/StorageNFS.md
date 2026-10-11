@@ -6,13 +6,13 @@ A NFS storage.
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **str** | The NFS storage ID (auto-generated). | [optional] 
+**id** | **str** | The NFS storage ID (auto-generated) (read-only). | [optional] [readonly] 
 **name** | **str** | The NFS storage name. | 
 **description** | **str** | The NFS storage description. | [optional] 
 **endpoint** | **str** | The associated NFS endpoint FQDN. | 
 **fs** | **str** | The underlying associated Ceph volume name. | [optional] [default to 'nfs']
-**backends** | **List[str]** | List of NFS Ganesha API server IP addresses. | [optional] 
-**port** | **int** | NFS Ganesha API server port (default 54934). | [optional] [default to 54934]
+**backends** | **List[str]** | List of NFS Ganesha API server IP addresses. | 
+**port** | **int** | NFS Ganesha API server port. | [optional] [default to 54934]
 
 ## Example
 

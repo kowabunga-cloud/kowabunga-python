@@ -6,10 +6,10 @@ A DNS record.
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **str** | The DNS record ID (auto-generated). | [optional] 
+**id** | **str** | The DNS record ID (auto-generated) (read-only). | [optional] [readonly] 
 **name** | **str** | The DNS record name. | 
 **description** | **str** | The DNS record description. | [optional] 
-**domain** | **str** | The DNS record associated domain (inherited from associated project). | [optional] 
+**domain** | **str** | The DNS record associated domain, inherited from associated project (read-only). | [optional] [readonly] 
 **addresses** | **List[str]** | A list of IPv4 addresses to be associated to the record. | 
 
 ## Example

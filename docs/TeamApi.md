@@ -93,6 +93,7 @@ Name | Type | Description  | Notes
 **400** | BadRequest error: Bad request (wrong input parameters). |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 **409** | Conflict error: A similar resource already exists or resource is still being referenced somewhere. |  -  |
 **422** | UnprocessableEntity error: Server can&#39;t process request. |  -  |
@@ -178,6 +179,7 @@ void (empty response body)
 **200** | The Kowabunga users team has been successfully removed. |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 **409** | Conflict error: A similar resource already exists or resource is still being referenced somewhere. |  -  |
 **422** | UnprocessableEntity error: Server can&#39;t process request. |  -  |
@@ -260,6 +262,7 @@ This endpoint does not need any parameter.
 **200** | Returns an array of Kowabunga users team IDs. |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -344,12 +347,13 @@ Name | Type | Description  | Notes
 **200** | Returns the Kowabunga users team object. |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_team**
-> Team update_team(team_id, team)
+> Team update_team(team_id, team_update)
 
 Updates a Kowabunga users team configuration.
 
@@ -361,6 +365,7 @@ Updates a Kowabunga users team configuration.
 ```python
 import kowabunga
 from kowabunga.models.team import Team
+from kowabunga.models.team_update import TeamUpdate
 from kowabunga.rest import ApiException
 from pprint import pprint
 
@@ -391,10 +396,10 @@ with kowabunga.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = kowabunga.TeamApi(api_client)
     team_id = 'team_id_example' # str | The ID of the Kowabunga users team.
-    team = kowabunga.Team() # Team | Team payload.
+    team_update = kowabunga.TeamUpdate() # TeamUpdate | TeamUpdate payload.
 
     try:
-        api_response = api_instance.update_team(team_id, team)
+        api_response = api_instance.update_team(team_id, team_update)
         print("The response of TeamApi->update_team:\n")
         pprint(api_response)
     except Exception as e:
@@ -409,7 +414,7 @@ with kowabunga.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **team_id** | **str**| The ID of the Kowabunga users team. | 
- **team** | [**Team**](Team.md)| Team payload. | 
+ **team_update** | [**TeamUpdate**](TeamUpdate.md)| TeamUpdate payload. | 
 
 ### Return type
 
@@ -432,6 +437,7 @@ Name | Type | Description  | Notes
 **400** | BadRequest error: Bad request (wrong input parameters). |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 **422** | UnprocessableEntity error: Server can&#39;t process request. |  -  |
 **507** | InsufficientResource error: Server can&#39;t allocate resources (logical quotas or physical limits hit). |  -  |

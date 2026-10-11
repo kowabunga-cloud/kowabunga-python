@@ -6,14 +6,13 @@ A Kawaii (Kowabunga Adapative WAn Intelligent Interface) is a network gateway us
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **str** | The Kawaii ID (auto-generated). | [optional] 
-**name** | **str** | The Kawaii name. | [optional] 
+**id** | **str** | The Kawaii ID (auto-generated) (read-only). | [optional] [readonly] 
+**name** | **str** | The Kawaii name, auto-generated from the project name. | [optional] 
 **description** | **str** | The Kawaii description. | [optional] 
-**netip** | [**KawaiiNetIp**](KawaiiNetIp.md) | The Kawaii list of assigned virtual IPs per-zone addresses (read-only). | [optional] 
-**firewall** | [**KawaiiFirewall**](KawaiiFirewall.md) | The Kawaii firewall settings from/to public Internet). | [optional] 
+**netip** | [**KawaiiNetIp**](KawaiiNetIp.md) | The Kawaii list of assigned virtual IPs per-zone addresses (read-only). | [optional] [readonly] 
+**firewall** | [**KawaiiFirewall**](KawaiiFirewall.md) | The Kawaii firewall settings from/to public Internet. | [optional] 
 **dnat** | [**List[KawaiiDNatRule]**](KawaiiDNatRule.md) | The Kawaii list of NAT forwarding entries. Kawaii will forward public Internet traffic from all public virtual IPs to requested private subnet IP addresses. | [optional] 
-**vpc_peerings** | [**List[KawaiiVpcPeering]**](KawaiiVpcPeering.md) | The Kawaii list of Kowabunga private VPC subnet peering entries. | [optional] 
-**ipsec_connections** | [**List[KawaiiIpSec]**](KawaiiIpSec.md) | The Kawaii list of Kowabunga IPsec connections. | [optional] 
+**vpc_peerings** | [**List[KawaiiVpcPeering]**](KawaiiVpcPeering.md) | The Kawaii list of Kowabunga private VPC subnet peering entries. Can only be set at creation time, ignored on updates. | [optional] 
 
 ## Example
 

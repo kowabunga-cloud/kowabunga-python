@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **email** | **str** | The user email address for login. | 
 **password** | **str** | The user password for login. | 
-**jwt** | **str** | The resulting server-generated JWT token for Bearer Authentication (read-only). | [optional] 
+**jwt** | **str** | The resulting server-generated JWT token for Bearer Authentication (read-only). | [optional] [readonly] 
 
 ## Example
 

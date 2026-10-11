@@ -6,10 +6,10 @@ A Kowabunga remote agent.
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **str** | The Kowabunga remote agent ID (auto-generated). | [optional] 
+**id** | **str** | The Kowabunga remote agent ID (auto-generated) (read-only). | [optional] [readonly] 
 **name** | **str** | The Kowabunga remote agent name. | 
 **description** | **str** | The Kowabunga remote agent description. | [optional] 
-**type** | **str** | The Kowabunga agent type. | 
+**type** | **str** | The Kowabunga agent type. Can only be set at creation time, ignored on updates. | 
 
 ## Example
 

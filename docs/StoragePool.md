@@ -6,12 +6,12 @@ A storage pool.
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **str** | The storage pool ID (auto-generated). | [optional] 
+**id** | **str** | The storage pool ID (auto-generated) (read-only). | [optional] [readonly] 
 **name** | **str** | The storage pool name. | 
 **description** | **str** | The storage pool description. | [optional] 
 **pool** | **str** | Ceph pool name. | 
 **ceph_address** | **str** | Ceph Monitor(s) address or FQDN. | [optional] [default to 'localhost']
-**ceph_port** | **int** | Ceph Monitor(s) port (default 3300). | [optional] [default to 3300]
+**ceph_port** | **int** | Ceph Monitor(s) port. | [optional] [default to 3300]
 **ceph_secret_uuid** | **str** | The libvirt secret UUID for CephX authentication. | [optional] 
 **cost** | [**Cost**](Cost.md) | Cost associated to the storage pool. | [optional] 
 **agents** | **List[str]** | a list of existing remote agents managing the storage pool. | 

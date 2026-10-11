@@ -6,7 +6,7 @@ A network adapter.
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **str** | The network adapter ID (auto-generated). | [optional] 
+**id** | **str** | The network adapter ID (auto-generated) (read-only). | [optional] [readonly] 
 **name** | **str** | The network adapter name. | 
 **description** | **str** | The network adapter description. | [optional] 
 **mac** | **str** | The network adapter hardware address (e.g. 00:11:22:33:44:55). Auto-generated if unspecified. | [optional] 

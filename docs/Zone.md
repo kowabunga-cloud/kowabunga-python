@@ -6,7 +6,7 @@ A availability zone.
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **str** | The availability zone ID (auto-generated). | [optional] 
+**id** | **str** | The availability zone ID (auto-generated) (read-only). | [optional] [readonly] 
 **name** | **str** | The availability zone name. | 
 **description** | **str** | The availability zone description. | [optional] 
 

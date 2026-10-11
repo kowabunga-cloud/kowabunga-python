@@ -4,7 +4,7 @@ All URIs are relative to *https://raw.githubusercontent.com/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**create_adapter**](SubnetApi.md#create_adapter) | **POST** /subnet/{subnetId}/adapter | 
+[**create_subnet_adapter**](SubnetApi.md#create_subnet_adapter) | **POST** /subnet/{subnetId}/adapter | 
 [**delete_subnet**](SubnetApi.md#delete_subnet) | **DELETE** /subnet/{subnetId} | 
 [**list_subnet_adapters**](SubnetApi.md#list_subnet_adapters) | **GET** /subnet/{subnetId}/adapters | 
 [**list_subnets**](SubnetApi.md#list_subnets) | **GET** /subnet | 
@@ -12,8 +12,8 @@ Method | HTTP request | Description
 [**update_subnet**](SubnetApi.md#update_subnet) | **PUT** /subnet/{subnetId} | 
 
 
-# **create_adapter**
-> Adapter create_adapter(subnet_id, adapter, assign_ip=assign_ip)
+# **create_subnet_adapter**
+> Adapter create_subnet_adapter(subnet_id, adapter, assign_ip=assign_ip)
 
 Creates a new network adapter.
 
@@ -56,14 +56,14 @@ with kowabunga.ApiClient(configuration) as api_client:
     api_instance = kowabunga.SubnetApi(api_client)
     subnet_id = 'subnet_id_example' # str | The ID of the network subnet.
     adapter = kowabunga.Adapter() # Adapter | Adapter payload.
-    assign_ip = True # bool | Whether Kowabunga should pick and assign an IP address to this adapter. (optional)
+    assign_ip = False # bool | Whether Kowabunga should pick and assign an IP address to this adapter. (optional) (default to False)
 
     try:
-        api_response = api_instance.create_adapter(subnet_id, adapter, assign_ip=assign_ip)
-        print("The response of SubnetApi->create_adapter:\n")
+        api_response = api_instance.create_subnet_adapter(subnet_id, adapter, assign_ip=assign_ip)
+        print("The response of SubnetApi->create_subnet_adapter:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling SubnetApi->create_adapter: %s\n" % e)
+        print("Exception when calling SubnetApi->create_subnet_adapter: %s\n" % e)
 ```
 
 
@@ -75,7 +75,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **subnet_id** | **str**| The ID of the network subnet. | 
  **adapter** | [**Adapter**](Adapter.md)| Adapter payload. | 
- **assign_ip** | **bool**| Whether Kowabunga should pick and assign an IP address to this adapter. | [optional] 
+ **assign_ip** | **bool**| Whether Kowabunga should pick and assign an IP address to this adapter. | [optional] [default to False]
 
 ### Return type
 
@@ -98,6 +98,7 @@ Name | Type | Description  | Notes
 **400** | BadRequest error: Bad request (wrong input parameters). |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 **409** | Conflict error: A similar resource already exists or resource is still being referenced somewhere. |  -  |
 **422** | UnprocessableEntity error: Server can&#39;t process request. |  -  |
@@ -183,6 +184,7 @@ void (empty response body)
 **200** | The network subnet has been successfully removed. |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 **409** | Conflict error: A similar resource already exists or resource is still being referenced somewhere. |  -  |
 **422** | UnprocessableEntity error: Server can&#39;t process request. |  -  |
@@ -269,6 +271,7 @@ Name | Type | Description  | Notes
 **200** | Returns an array of network adapter IDs. |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -349,6 +352,7 @@ This endpoint does not need any parameter.
 **200** | Returns an array of network subnet IDs. |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -433,12 +437,13 @@ Name | Type | Description  | Notes
 **200** | Returns the network subnet object. |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_subnet**
-> Subnet update_subnet(subnet_id, subnet)
+> Subnet update_subnet(subnet_id, subnet_update)
 
 Updates a network subnet configuration.
 
@@ -450,6 +455,7 @@ Updates a network subnet configuration.
 ```python
 import kowabunga
 from kowabunga.models.subnet import Subnet
+from kowabunga.models.subnet_update import SubnetUpdate
 from kowabunga.rest import ApiException
 from pprint import pprint
 
@@ -480,10 +486,10 @@ with kowabunga.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = kowabunga.SubnetApi(api_client)
     subnet_id = 'subnet_id_example' # str | The ID of the network subnet.
-    subnet = kowabunga.Subnet() # Subnet | Subnet payload.
+    subnet_update = kowabunga.SubnetUpdate() # SubnetUpdate | SubnetUpdate payload.
 
     try:
-        api_response = api_instance.update_subnet(subnet_id, subnet)
+        api_response = api_instance.update_subnet(subnet_id, subnet_update)
         print("The response of SubnetApi->update_subnet:\n")
         pprint(api_response)
     except Exception as e:
@@ -498,7 +504,7 @@ with kowabunga.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **subnet_id** | **str**| The ID of the network subnet. | 
- **subnet** | [**Subnet**](Subnet.md)| Subnet payload. | 
+ **subnet_update** | [**SubnetUpdate**](SubnetUpdate.md)| SubnetUpdate payload. | 
 
 ### Return type
 
@@ -521,6 +527,7 @@ Name | Type | Description  | Notes
 **400** | BadRequest error: Bad request (wrong input parameters). |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 **422** | UnprocessableEntity error: Server can&#39;t process request. |  -  |
 **507** | InsufficientResource error: Server can&#39;t allocate resources (logical quotas or physical limits hit). |  -  |

@@ -88,6 +88,7 @@ void (empty response body)
 **200** | The network adapter has been successfully removed. |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 **409** | Conflict error: A similar resource already exists or resource is still being referenced somewhere. |  -  |
 **422** | UnprocessableEntity error: Server can&#39;t process request. |  -  |
@@ -170,6 +171,7 @@ This endpoint does not need any parameter.
 **200** | Returns an array of network adapter IDs. |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -254,12 +256,13 @@ Name | Type | Description  | Notes
 **200** | Returns the network adapter object. |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_adapter**
-> Adapter update_adapter(adapter_id, adapter)
+> Adapter update_adapter(adapter_id, adapter_update)
 
 Updates a network adapter configuration.
 
@@ -271,6 +274,7 @@ Updates a network adapter configuration.
 ```python
 import kowabunga
 from kowabunga.models.adapter import Adapter
+from kowabunga.models.adapter_update import AdapterUpdate
 from kowabunga.rest import ApiException
 from pprint import pprint
 
@@ -301,10 +305,10 @@ with kowabunga.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = kowabunga.AdapterApi(api_client)
     adapter_id = 'adapter_id_example' # str | The ID of the network adapter.
-    adapter = kowabunga.Adapter() # Adapter | Adapter payload.
+    adapter_update = kowabunga.AdapterUpdate() # AdapterUpdate | AdapterUpdate payload.
 
     try:
-        api_response = api_instance.update_adapter(adapter_id, adapter)
+        api_response = api_instance.update_adapter(adapter_id, adapter_update)
         print("The response of AdapterApi->update_adapter:\n")
         pprint(api_response)
     except Exception as e:
@@ -319,7 +323,7 @@ with kowabunga.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **adapter_id** | **str**| The ID of the network adapter. | 
- **adapter** | [**Adapter**](Adapter.md)| Adapter payload. | 
+ **adapter_update** | [**AdapterUpdate**](AdapterUpdate.md)| AdapterUpdate payload. | 
 
 ### Return type
 
@@ -342,6 +346,7 @@ Name | Type | Description  | Notes
 **400** | BadRequest error: Bad request (wrong input parameters). |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 **422** | UnprocessableEntity error: Server can&#39;t process request. |  -  |
 **507** | InsufficientResource error: Server can&#39;t allocate resources (logical quotas or physical limits hit). |  -  |

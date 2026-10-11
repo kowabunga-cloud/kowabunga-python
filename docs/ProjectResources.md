@@ -6,10 +6,10 @@ A global project resource quotas/usage (0 for unlimited).
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**vcpus** | **int** | The maximum total number of vCPUs allowed to be consumed by sum of all instances. | [optional] 
-**memory** | **int** | The maximum total memory (in bytes) allowed to be consumed by sum of all instances. | [optional] 
-**storage** | **int** | The maximum total disk capacity allowed to be consumed by sum of all instances. | [optional] 
-**instances** | **int** | The maximum number of instances allowed to be spawned. | [optional] 
+**vcpus** | **int** | The total number of vCPUs consumed by (or allowed for) the sum of all instances. | [optional] 
+**memory** | **int** | The total memory (in bytes) consumed by (or allowed for) the sum of all instances. | [optional] 
+**storage** | **int** | The total disk capacity (in bytes) consumed by (or allowed for) the sum of all volumes. | [optional] 
+**instances** | **int** | The number of instances spawned (or allowed to be). | [optional] 
 
 ## Example
 

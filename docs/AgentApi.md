@@ -94,6 +94,7 @@ Name | Type | Description  | Notes
 **400** | BadRequest error: Bad request (wrong input parameters). |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 **409** | Conflict error: A similar resource already exists or resource is still being referenced somewhere. |  -  |
 **422** | UnprocessableEntity error: Server can&#39;t process request. |  -  |
@@ -179,6 +180,7 @@ void (empty response body)
 **200** | The Kowabunga remote agent has been successfully removed. |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 **409** | Conflict error: A similar resource already exists or resource is still being referenced somewhere. |  -  |
 **422** | UnprocessableEntity error: Server can&#39;t process request. |  -  |
@@ -261,6 +263,7 @@ This endpoint does not need any parameter.
 **200** | Returns an array of Kowabunga remote agent IDs. |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -345,6 +348,7 @@ Name | Type | Description  | Notes
 **200** | Returns the Kowabunga remote agent object. |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -352,7 +356,7 @@ Name | Type | Description  | Notes
 # **set_agent_api_token**
 > ApiToken set_agent_api_token(agent_id, expire=expire, expiration_date=expiration_date)
 
-Performs a Kowabunga remote agent setting of API token (will replace any existing one).
+Performs a Kowabunga remote agent setting of API token (will replace any existing one, disconnecting the agent; the generated API key is only sent once, by email, to administrators).
 
 ### Example
 
@@ -392,7 +396,7 @@ with kowabunga.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = kowabunga.AgentApi(api_client)
     agent_id = 'agent_id_example' # str | The ID of the Kowabunga remote agent.
-    expire = True # bool | Whether or not the token should expire. (optional)
+    expire = False # bool | Whether or not the token should expire. (optional) (default to False)
     expiration_date = '2013-10-20' # date | Token's expiration date (YYYY-MM-DD format). (optional)
 
     try:
@@ -411,7 +415,7 @@ with kowabunga.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **agent_id** | **str**| The ID of the Kowabunga remote agent. | 
- **expire** | **bool**| Whether or not the token should expire. | [optional] 
+ **expire** | **bool**| Whether or not the token should expire. | [optional] [default to False]
  **expiration_date** | **date**| Token&#39;s expiration date (YYYY-MM-DD format). | [optional] 
 
 ### Return type
@@ -431,16 +435,17 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Returns the Kowabunga remote agent object. |  -  |
+**200** | Returns the server-to-server authentication security token object. |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 **422** | UnprocessableEntity error: Server can&#39;t process request. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_agent**
-> Agent update_agent(agent_id, agent)
+> Agent update_agent(agent_id, agent_update)
 
 Updates a Kowabunga remote agent configuration.
 
@@ -452,6 +457,7 @@ Updates a Kowabunga remote agent configuration.
 ```python
 import kowabunga
 from kowabunga.models.agent import Agent
+from kowabunga.models.agent_update import AgentUpdate
 from kowabunga.rest import ApiException
 from pprint import pprint
 
@@ -482,10 +488,10 @@ with kowabunga.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = kowabunga.AgentApi(api_client)
     agent_id = 'agent_id_example' # str | The ID of the Kowabunga remote agent.
-    agent = kowabunga.Agent() # Agent | Agent payload.
+    agent_update = kowabunga.AgentUpdate() # AgentUpdate | AgentUpdate payload.
 
     try:
-        api_response = api_instance.update_agent(agent_id, agent)
+        api_response = api_instance.update_agent(agent_id, agent_update)
         print("The response of AgentApi->update_agent:\n")
         pprint(api_response)
     except Exception as e:
@@ -500,7 +506,7 @@ with kowabunga.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **agent_id** | **str**| The ID of the Kowabunga remote agent. | 
- **agent** | [**Agent**](Agent.md)| Agent payload. | 
+ **agent_update** | [**AgentUpdate**](AgentUpdate.md)| AgentUpdate payload. | 
 
 ### Return type
 
@@ -523,6 +529,7 @@ Name | Type | Description  | Notes
 **400** | BadRequest error: Bad request (wrong input parameters). |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 **422** | UnprocessableEntity error: Server can&#39;t process request. |  -  |
 **507** | InsufficientResource error: Server can&#39;t allocate resources (logical quotas or physical limits hit). |  -  |

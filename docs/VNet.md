@@ -6,12 +6,12 @@ A virtual network.
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **str** | The virtual network ID (auto-generated). | [optional] 
+**id** | **str** | The virtual network ID (auto-generated) (read-only). | [optional] [readonly] 
 **name** | **str** | The virtual network name. | 
 **description** | **str** | The virtual network description. | [optional] 
 **vlan** | **int** | The VLAN identifier (0 if unspecified). | [optional] 
 **interface** | **str** | The libvirt&#39;s bridge network interface (brX). | 
-**private** | **bool** | Is the virtual network adapter connected to private (LAN) or public (WAN) physical network ?. | [optional] [default to True]
+**private** | **bool** | Whether the virtual network is connected to private (LAN) or public (WAN) physical network. Can only be set at creation time, ignored on updates. | [optional] [default to True]
 
 ## Example
 

@@ -6,9 +6,9 @@ A Kawaii Network IP settings.
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**public** | **List[str]** | The Kawaii global public gateways virtual IP addresses (read-only). | 
-**private** | **List[str]** | The Kawaii global private gateways virtual IP addresses (read-only). | 
-**zones** | [**List[KawaiiNetIpZone]**](KawaiiNetIpZone.md) | The Kawaii per-zone list of Kowabunga virtual IP addresses. | 
+**public** | **List[str]** | The Kawaii global public gateways virtual IP addresses (read-only). | [readonly] 
+**private** | **List[str]** | The Kawaii global private gateways virtual IP addresses (read-only). | [readonly] 
+**zones** | [**List[KawaiiNetIpZone]**](KawaiiNetIpZone.md) | The Kawaii per-zone list of Kowabunga virtual IP addresses (read-only). | [readonly] 
 
 ## Example
 

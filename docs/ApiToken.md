@@ -6,10 +6,10 @@ A Kowabunga authentication security token consists of an API key granting access
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **str** | The server-to-server authentication security token ID (auto-generated). | [optional] 
+**id** | **str** | The server-to-server authentication security token ID (auto-generated) (read-only). | [optional] [readonly] 
 **name** | **str** | The server-to-server authentication security token name. | 
 **description** | **str** | The server-to-server authentication security token description. | [optional] 
-**expire** | **bool** | Does the API token expires at some stage ?. | [default to False]
+**expire** | **bool** | Whether the API token expires at some stage. | [default to False]
 **expiration_date** | **date** | Expiration date of the token (YYYY-MM-DD format). | [optional] 
 
 ## Example

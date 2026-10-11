@@ -6,9 +6,9 @@ A Kawaii Network IP zone settings.
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**zone** | **str** | The Kawaii zone name (read-only). | 
-**public** | **str** | The Kawaii zone gateway public virtual IP (read-only). | 
-**private** | **str** | The Kawaii zone gateway private virtual IP (read-only). | 
+**zone** | **str** | The Kawaii zone name (read-only). | [readonly] 
+**public** | **str** | The Kawaii zone gateway public virtual IP (unset for VPC peered subnets) (read-only). | [optional] [readonly] 
+**private** | **str** | The Kawaii zone gateway private virtual IP (read-only). | [readonly] 
 
 ## Example
 

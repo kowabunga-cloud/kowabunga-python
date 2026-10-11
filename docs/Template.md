@@ -6,11 +6,11 @@ A image template.
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **str** | The image template ID (auto-generated). | [optional] 
+**id** | **str** | The image template ID (auto-generated) (read-only). | [optional] [readonly] 
 **name** | **str** | The image template name. | 
 **description** | **str** | The image template description. | [optional] 
-**os** | **str** | Type of operating system if OS kind (useful to determine cloud-init parameters for instance). | [optional] [default to 'linux']
-**source** | **str** | HTTP(s) source URL of the KVM-ready OS image. | 
+**os** | **str** | Type of operating system (useful to determine cloud-init parameters for instance). Can only be set at creation time, ignored on updates. | [optional] [default to 'linux']
+**source** | **str** | HTTP(s) source URL of the KVM-ready OS image. Can only be set at creation time, ignored on updates. | 
 
 ## Example
 

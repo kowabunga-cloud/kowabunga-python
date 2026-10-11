@@ -88,6 +88,7 @@ void (empty response body)
 **200** | The Konvey (Kowabunga Network Load-Balancer) has been successfully removed. |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 **409** | Conflict error: A similar resource already exists or resource is still being referenced somewhere. |  -  |
 **422** | UnprocessableEntity error: Server can&#39;t process request. |  -  |
@@ -170,6 +171,7 @@ This endpoint does not need any parameter.
 **200** | Returns an array of Konvey (Kowabunga Network Load-Balancer) IDs. |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -254,12 +256,13 @@ Name | Type | Description  | Notes
 **200** | Returns the Konvey (Kowabunga Network Load-Balancer) object. |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_konvey**
-> Konvey update_konvey(konvey_id, konvey)
+> Konvey update_konvey(konvey_id, konvey_update)
 
 Updates a Konvey (Kowabunga Network Load-Balancer) configuration.
 
@@ -271,6 +274,7 @@ Updates a Konvey (Kowabunga Network Load-Balancer) configuration.
 ```python
 import kowabunga
 from kowabunga.models.konvey import Konvey
+from kowabunga.models.konvey_update import KonveyUpdate
 from kowabunga.rest import ApiException
 from pprint import pprint
 
@@ -301,10 +305,10 @@ with kowabunga.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = kowabunga.KonveyApi(api_client)
     konvey_id = 'konvey_id_example' # str | The ID of the Konvey (Kowabunga Network Load-Balancer).
-    konvey = kowabunga.Konvey() # Konvey | Konvey payload.
+    konvey_update = kowabunga.KonveyUpdate() # KonveyUpdate | KonveyUpdate payload.
 
     try:
-        api_response = api_instance.update_konvey(konvey_id, konvey)
+        api_response = api_instance.update_konvey(konvey_id, konvey_update)
         print("The response of KonveyApi->update_konvey:\n")
         pprint(api_response)
     except Exception as e:
@@ -319,7 +323,7 @@ with kowabunga.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **konvey_id** | **str**| The ID of the Konvey (Kowabunga Network Load-Balancer). | 
- **konvey** | [**Konvey**](Konvey.md)| Konvey payload. | 
+ **konvey_update** | [**KonveyUpdate**](KonveyUpdate.md)| KonveyUpdate payload. | 
 
 ### Return type
 
@@ -342,6 +346,7 @@ Name | Type | Description  | Notes
 **400** | BadRequest error: Bad request (wrong input parameters). |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 **422** | UnprocessableEntity error: Server can&#39;t process request. |  -  |
 **507** | InsufficientResource error: Server can&#39;t allocate resources (logical quotas or physical limits hit). |  -  |

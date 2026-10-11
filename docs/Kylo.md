@@ -6,13 +6,13 @@ A Kylo provides an elastic NFS-like remote storage volume.
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **str** | The Kylo ID (auto-generated). | [optional] 
+**id** | **str** | The Kylo ID (auto-generated) (read-only). | [optional] [readonly] 
 **name** | **str** | The Kylo name. | 
 **description** | **str** | The Kylo description. | [optional] 
 **access** | **str** | The Kylo volume access type. | [optional] [default to 'RW']
 **protocols** | **List[int]** | The Kylo NFS protocol versions to be supported. | [optional] [default to [3, 4]]
-**endpoint** | **str** | The Kylo endpoint FQDN (read-only). | [optional] 
-**size** | **int** | The Kylo volume bytes used (read-only). | [optional] 
+**endpoint** | **str** | The Kylo endpoint FQDN (read-only). | [optional] [readonly] 
+**size** | **int** | The Kylo volume bytes used (read-only). | [optional] [readonly] 
 
 ## Example
 

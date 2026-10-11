@@ -6,16 +6,16 @@ A Kompute is a wrapper object for bare virtual machines. It consists of an insta
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **str** | The Kompute ID (auto-generated). | [optional] 
+**id** | **str** | The Kompute ID (auto-generated) (read-only). | [optional] [readonly] 
 **name** | **str** | The Kompute name. | 
 **description** | **str** | The Kompute description. | [optional] 
 **memory** | **int** | The Kompute memory size (in bytes). | 
 **vcpus** | **int** | The Kompute number of vCPUs. | 
 **disk** | **int** | The Kompute OS disk size (in bytes). | 
 **data_disk** | **int** | The Kompute extra data disk size (in bytes). If unspecified, no extra data disk will be assigned. | [optional] [default to 0]
-**ip** | **str** | The Kompute assigned private IPv4 address (read-only). | [optional] 
-**kwarantines** | **List[str]** | An optional list of existing Kwarantine anti-affinity group IDs. Only considered at Kompute creation time, to elect an initial host consistent with the referenced groups policies and register the Kompute as one of their members. Read-only afterwards, always reflecting current membership, which should be managed going forward via the Kwarantine webservices. | [optional] 
-**uefi** | **bool** | enable UEFI secure firmware (vs. legacy BIOS). | [optional] [default to True]
+**ip** | **str** | The Kompute assigned private IPv4 address (read-only). | [optional] [readonly] 
+**kwarantines** | **List[str]** | An optional list of existing Kwarantine anti-affinity group IDs. Only considered at Kompute creation time, to elect an initial host consistent with the referenced groups policies and register the Kompute as one of their members. Read-only afterwards, always reflecting current membership, which should be managed going forward via the Kwarantine webservices. Can only be set at creation time, ignored on updates. | [optional] 
+**uefi** | **bool** | Enable UEFI secure firmware (vs. legacy BIOS). Can only be set at creation time, ignored on updates. | [optional] [default to True]
 **kmotion_enabled** | **bool** | Whether kMotion (live/cold host migration) is enabled for the Kompute. When disabled, the instance remains bound to its original hosting node. | [optional] [default to True]
 
 ## Example

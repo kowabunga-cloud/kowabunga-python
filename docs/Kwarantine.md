@@ -6,12 +6,12 @@ A Kwarantine is an anti-affinity mechanism that ensures its member virtual machi
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **str** | The Kwarantine ID (auto-generated). | [optional] 
+**id** | **str** | The Kwarantine ID (auto-generated) (read-only). | [optional] [readonly] 
 **name** | **str** | The Kwarantine name. | 
 **description** | **str** | The Kwarantine description. | [optional] 
 **policy** | **str** | The anti-affinity enforcement policy. Use \&quot;host\&quot; to guarantee no two group members are ever scheduled on the same Kaktus computing node, or \&quot;zone\&quot; to guarantee no two group members are ever scheduled within the same availability zone. | [optional] [default to 'host']
-**instances** | **List[str]** | A list of existing virtual machine instance IDs that are part of the Kwarantine group. Members are guaranteed to never be co-scheduled according to the group policy, regardless of Kaktus host scheduling score. | [optional] 
-**komputes** | **List[str]** | A list of existing Kompute IDs that are part of the Kwarantine group. Members are guaranteed to never be co-scheduled according to the group policy, regardless of Kaktus host scheduling score. | [optional] 
+**instances** | **List[str]** | A list of existing virtual machine instance IDs that are part of the Kwarantine group. Members are guaranteed to never be co-scheduled according to the group policy, regardless of Kaktus host scheduling score. Managed through the dedicated add/remove operations (read-only). | [optional] [readonly] 
+**komputes** | **List[str]** | A list of existing Kompute IDs that are part of the Kwarantine group. Members are guaranteed to never be co-scheduled according to the group policy, regardless of Kaktus host scheduling score. Managed through the dedicated add/remove operations (read-only). | [optional] [readonly] 
 
 ## Example
 

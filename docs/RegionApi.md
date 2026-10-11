@@ -4,17 +4,17 @@ All URIs are relative to *https://raw.githubusercontent.com/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**create_kiwi**](RegionApi.md#create_kiwi) | **POST** /region/{regionId}/kiwi | 
 [**create_region**](RegionApi.md#create_region) | **POST** /region | 
 [**create_region_dns_record**](RegionApi.md#create_region_dns_record) | **POST** /region/{regionId}/record | 
-[**create_storage_nfs**](RegionApi.md#create_storage_nfs) | **POST** /region/{regionId}/nfs | 
-[**create_storage_pool**](RegionApi.md#create_storage_pool) | **POST** /region/{regionId}/pool | 
-[**create_v_net**](RegionApi.md#create_v_net) | **POST** /region/{regionId}/vnet | 
-[**create_zone**](RegionApi.md#create_zone) | **POST** /region/{regionId}/zone | 
+[**create_region_kiwi**](RegionApi.md#create_region_kiwi) | **POST** /region/{regionId}/kiwi | 
+[**create_region_storage_nfs**](RegionApi.md#create_region_storage_nfs) | **POST** /region/{regionId}/nfs | 
+[**create_region_storage_pool**](RegionApi.md#create_region_storage_pool) | **POST** /region/{regionId}/pool | 
+[**create_region_v_net**](RegionApi.md#create_region_v_net) | **POST** /region/{regionId}/vnet | 
+[**create_region_zone**](RegionApi.md#create_region_zone) | **POST** /region/{regionId}/zone | 
 [**delete_region**](RegionApi.md#delete_region) | **DELETE** /region/{regionId} | 
 [**list_region_dns_records**](RegionApi.md#list_region_dns_records) | **GET** /region/{regionId}/records | 
 [**list_region_kiwis**](RegionApi.md#list_region_kiwis) | **GET** /region/{regionId}/kiwis | 
-[**list_region_storage_nfss**](RegionApi.md#list_region_storage_nfss) | **GET** /region/{regionId}/nfs | 
+[**list_region_storage_nf_ses**](RegionApi.md#list_region_storage_nf_ses) | **GET** /region/{regionId}/nfses | 
 [**list_region_storage_pools**](RegionApi.md#list_region_storage_pools) | **GET** /region/{regionId}/pools | 
 [**list_region_v_nets**](RegionApi.md#list_region_v_nets) | **GET** /region/{regionId}/vnets | 
 [**list_region_zones**](RegionApi.md#list_region_zones) | **GET** /region/{regionId}/zones | 
@@ -24,97 +24,6 @@ Method | HTTP request | Description
 [**set_region_default_storage_pool**](RegionApi.md#set_region_default_storage_pool) | **PATCH** /region/{regionId}/pool/{poolId}/default | 
 [**update_region**](RegionApi.md#update_region) | **PUT** /region/{regionId} | 
 
-
-# **create_kiwi**
-> Kiwi create_kiwi(region_id, kiwi)
-
-Creates a new Kiwi (Kowabunga Inner Wan Interface) provides edge-network services..
-
-### Example
-
-* Api Key Authentication (ApiKeyAuth):
-* Bearer (JWT) Authentication (BearerAuth):
-
-```python
-import kowabunga
-from kowabunga.models.kiwi import Kiwi
-from kowabunga.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to https://raw.githubusercontent.com/api/v1
-# See configuration.py for a list of all supported configuration parameters.
-configuration = kowabunga.Configuration(
-    host = "https://raw.githubusercontent.com/api/v1"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: ApiKeyAuth
-configuration.api_key['ApiKeyAuth'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
-
-# Configure Bearer authorization (JWT): BearerAuth
-configuration = kowabunga.Configuration(
-    access_token = os.environ["BEARER_TOKEN"]
-)
-
-# Enter a context with an instance of the API client
-with kowabunga.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = kowabunga.RegionApi(api_client)
-    region_id = 'region_id_example' # str | The ID of the region.
-    kiwi = kowabunga.Kiwi() # Kiwi | Kiwi payload.
-
-    try:
-        api_response = api_instance.create_kiwi(region_id, kiwi)
-        print("The response of RegionApi->create_kiwi:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling RegionApi->create_kiwi: %s\n" % e)
-```
-
-
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **region_id** | **str**| The ID of the region. | 
- **kiwi** | [**Kiwi**](Kiwi.md)| Kiwi payload. | 
-
-### Return type
-
-[**Kiwi**](Kiwi.md)
-
-### Authorization
-
-[ApiKeyAuth](../README.md#ApiKeyAuth), [BearerAuth](../README.md#BearerAuth)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**201** | Returns the newly created Kiwi (Kowabunga Inner Wan Interface) provides edge-network services. object. |  -  |
-**400** | BadRequest error: Bad request (wrong input parameters). |  -  |
-**401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
-**403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
-**404** | NotFound error: Specified resource does not exist. |  -  |
-**409** | Conflict error: A similar resource already exists or resource is still being referenced somewhere. |  -  |
-**422** | UnprocessableEntity error: Server can&#39;t process request. |  -  |
-**507** | InsufficientResource error: Server can&#39;t allocate resources (logical quotas or physical limits hit). |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_region**
 > Region create_region(region)
@@ -198,6 +107,7 @@ Name | Type | Description  | Notes
 **400** | BadRequest error: Bad request (wrong input parameters). |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 **409** | Conflict error: A similar resource already exists or resource is still being referenced somewhere. |  -  |
 **422** | UnprocessableEntity error: Server can&#39;t process request. |  -  |
@@ -289,6 +199,7 @@ Name | Type | Description  | Notes
 **400** | BadRequest error: Bad request (wrong input parameters). |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 **409** | Conflict error: A similar resource already exists or resource is still being referenced somewhere. |  -  |
 **422** | UnprocessableEntity error: Server can&#39;t process request. |  -  |
@@ -296,8 +207,100 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **create_storage_nfs**
-> StorageNFS create_storage_nfs(region_id, storage_nfs, pool_id=pool_id)
+# **create_region_kiwi**
+> Kiwi create_region_kiwi(region_id, kiwi)
+
+Creates a new Kiwi (Kowabunga Inner Wan Interface) provides edge-network services..
+
+### Example
+
+* Api Key Authentication (ApiKeyAuth):
+* Bearer (JWT) Authentication (BearerAuth):
+
+```python
+import kowabunga
+from kowabunga.models.kiwi import Kiwi
+from kowabunga.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://raw.githubusercontent.com/api/v1
+# See configuration.py for a list of all supported configuration parameters.
+configuration = kowabunga.Configuration(
+    host = "https://raw.githubusercontent.com/api/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: ApiKeyAuth
+configuration.api_key['ApiKeyAuth'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
+
+# Configure Bearer authorization (JWT): BearerAuth
+configuration = kowabunga.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with kowabunga.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = kowabunga.RegionApi(api_client)
+    region_id = 'region_id_example' # str | The ID of the region.
+    kiwi = kowabunga.Kiwi() # Kiwi | Kiwi payload.
+
+    try:
+        api_response = api_instance.create_region_kiwi(region_id, kiwi)
+        print("The response of RegionApi->create_region_kiwi:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling RegionApi->create_region_kiwi: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **region_id** | **str**| The ID of the region. | 
+ **kiwi** | [**Kiwi**](Kiwi.md)| Kiwi payload. | 
+
+### Return type
+
+[**Kiwi**](Kiwi.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | Returns the newly created Kiwi (Kowabunga Inner Wan Interface) provides edge-network services. object. |  -  |
+**400** | BadRequest error: Bad request (wrong input parameters). |  -  |
+**401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
+**403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
+**404** | NotFound error: Specified resource does not exist. |  -  |
+**409** | Conflict error: A similar resource already exists or resource is still being referenced somewhere. |  -  |
+**422** | UnprocessableEntity error: Server can&#39;t process request. |  -  |
+**507** | InsufficientResource error: Server can&#39;t allocate resources (logical quotas or physical limits hit). |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **create_region_storage_nfs**
+> StorageNFS create_region_storage_nfs(region_id, storage_nfs, pool_id=pool_id)
 
 Creates a new NFS storage.
 
@@ -343,11 +346,11 @@ with kowabunga.ApiClient(configuration) as api_client:
     pool_id = 'pool_id_example' # str | Storage pool ID (optional, region's default if unspecified). (optional)
 
     try:
-        api_response = api_instance.create_storage_nfs(region_id, storage_nfs, pool_id=pool_id)
-        print("The response of RegionApi->create_storage_nfs:\n")
+        api_response = api_instance.create_region_storage_nfs(region_id, storage_nfs, pool_id=pool_id)
+        print("The response of RegionApi->create_region_storage_nfs:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling RegionApi->create_storage_nfs: %s\n" % e)
+        print("Exception when calling RegionApi->create_region_storage_nfs: %s\n" % e)
 ```
 
 
@@ -382,6 +385,7 @@ Name | Type | Description  | Notes
 **400** | BadRequest error: Bad request (wrong input parameters). |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 **409** | Conflict error: A similar resource already exists or resource is still being referenced somewhere. |  -  |
 **422** | UnprocessableEntity error: Server can&#39;t process request. |  -  |
@@ -389,8 +393,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **create_storage_pool**
-> StoragePool create_storage_pool(region_id, storage_pool)
+# **create_region_storage_pool**
+> StoragePool create_region_storage_pool(region_id, storage_pool)
 
 Creates a new storage pool.
 
@@ -435,11 +439,11 @@ with kowabunga.ApiClient(configuration) as api_client:
     storage_pool = kowabunga.StoragePool() # StoragePool | StoragePool payload.
 
     try:
-        api_response = api_instance.create_storage_pool(region_id, storage_pool)
-        print("The response of RegionApi->create_storage_pool:\n")
+        api_response = api_instance.create_region_storage_pool(region_id, storage_pool)
+        print("The response of RegionApi->create_region_storage_pool:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling RegionApi->create_storage_pool: %s\n" % e)
+        print("Exception when calling RegionApi->create_region_storage_pool: %s\n" % e)
 ```
 
 
@@ -473,6 +477,7 @@ Name | Type | Description  | Notes
 **400** | BadRequest error: Bad request (wrong input parameters). |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 **409** | Conflict error: A similar resource already exists or resource is still being referenced somewhere. |  -  |
 **422** | UnprocessableEntity error: Server can&#39;t process request. |  -  |
@@ -480,8 +485,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **create_v_net**
-> VNet create_v_net(region_id, v_net)
+# **create_region_v_net**
+> VNet create_region_v_net(region_id, v_net)
 
 Creates a new virtual network.
 
@@ -526,11 +531,11 @@ with kowabunga.ApiClient(configuration) as api_client:
     v_net = kowabunga.VNet() # VNet | VNet payload.
 
     try:
-        api_response = api_instance.create_v_net(region_id, v_net)
-        print("The response of RegionApi->create_v_net:\n")
+        api_response = api_instance.create_region_v_net(region_id, v_net)
+        print("The response of RegionApi->create_region_v_net:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling RegionApi->create_v_net: %s\n" % e)
+        print("Exception when calling RegionApi->create_region_v_net: %s\n" % e)
 ```
 
 
@@ -564,6 +569,7 @@ Name | Type | Description  | Notes
 **400** | BadRequest error: Bad request (wrong input parameters). |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 **409** | Conflict error: A similar resource already exists or resource is still being referenced somewhere. |  -  |
 **422** | UnprocessableEntity error: Server can&#39;t process request. |  -  |
@@ -571,8 +577,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **create_zone**
-> Zone create_zone(region_id, zone)
+# **create_region_zone**
+> Zone create_region_zone(region_id, zone)
 
 Creates a new availability zone.
 
@@ -617,11 +623,11 @@ with kowabunga.ApiClient(configuration) as api_client:
     zone = kowabunga.Zone() # Zone | Zone payload.
 
     try:
-        api_response = api_instance.create_zone(region_id, zone)
-        print("The response of RegionApi->create_zone:\n")
+        api_response = api_instance.create_region_zone(region_id, zone)
+        print("The response of RegionApi->create_region_zone:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling RegionApi->create_zone: %s\n" % e)
+        print("Exception when calling RegionApi->create_region_zone: %s\n" % e)
 ```
 
 
@@ -655,6 +661,7 @@ Name | Type | Description  | Notes
 **400** | BadRequest error: Bad request (wrong input parameters). |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 **409** | Conflict error: A similar resource already exists or resource is still being referenced somewhere. |  -  |
 **422** | UnprocessableEntity error: Server can&#39;t process request. |  -  |
@@ -740,6 +747,7 @@ void (empty response body)
 **200** | The region has been successfully removed. |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 **409** | Conflict error: A similar resource already exists or resource is still being referenced somewhere. |  -  |
 **422** | UnprocessableEntity error: Server can&#39;t process request. |  -  |
@@ -826,6 +834,7 @@ Name | Type | Description  | Notes
 **200** | Returns an array of DNS record IDs. |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -910,12 +919,13 @@ Name | Type | Description  | Notes
 **200** | Returns an array of Kiwi (Kowabunga Inner Wan Interface) provides edge-network services. IDs. |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **list_region_storage_nfss**
-> List[str] list_region_storage_nfss(region_id, pool_id=pool_id)
+# **list_region_storage_nf_ses**
+> List[str] list_region_storage_nf_ses(region_id)
 
 Returns the IDs of NFS storage objects.
 
@@ -956,14 +966,13 @@ with kowabunga.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = kowabunga.RegionApi(api_client)
     region_id = 'region_id_example' # str | The ID of the region.
-    pool_id = 'pool_id_example' # str | Storage pool ID (optional, region's default if unspecified). (optional)
 
     try:
-        api_response = api_instance.list_region_storage_nfss(region_id, pool_id=pool_id)
-        print("The response of RegionApi->list_region_storage_nfss:\n")
+        api_response = api_instance.list_region_storage_nf_ses(region_id)
+        print("The response of RegionApi->list_region_storage_nf_ses:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling RegionApi->list_region_storage_nfss: %s\n" % e)
+        print("Exception when calling RegionApi->list_region_storage_nf_ses: %s\n" % e)
 ```
 
 
@@ -974,7 +983,6 @@ with kowabunga.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **region_id** | **str**| The ID of the region. | 
- **pool_id** | **str**| Storage pool ID (optional, region&#39;s default if unspecified). | [optional] 
 
 ### Return type
 
@@ -996,6 +1004,7 @@ Name | Type | Description  | Notes
 **200** | Returns an array of NFS storage IDs. |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -1080,6 +1089,7 @@ Name | Type | Description  | Notes
 **200** | Returns an array of storage pool IDs. |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -1164,6 +1174,7 @@ Name | Type | Description  | Notes
 **200** | Returns an array of virtual network IDs. |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -1248,6 +1259,7 @@ Name | Type | Description  | Notes
 **200** | Returns an array of availability zone IDs. |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -1328,6 +1340,7 @@ This endpoint does not need any parameter.
 **200** | Returns an array of region IDs. |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1412,6 +1425,7 @@ Name | Type | Description  | Notes
 **200** | Returns the region object. |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -1496,6 +1510,7 @@ void (empty response body)
 **200** | The region setting of default NFS storage is successful. |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 **422** | UnprocessableEntity error: Server can&#39;t process request. |  -  |
 
@@ -1581,13 +1596,14 @@ void (empty response body)
 **200** | The region setting of default storage pool is successful. |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 **422** | UnprocessableEntity error: Server can&#39;t process request. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_region**
-> Region update_region(region_id, region)
+> Region update_region(region_id, region_update)
 
 Updates a region configuration.
 
@@ -1599,6 +1615,7 @@ Updates a region configuration.
 ```python
 import kowabunga
 from kowabunga.models.region import Region
+from kowabunga.models.region_update import RegionUpdate
 from kowabunga.rest import ApiException
 from pprint import pprint
 
@@ -1629,10 +1646,10 @@ with kowabunga.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = kowabunga.RegionApi(api_client)
     region_id = 'region_id_example' # str | The ID of the region.
-    region = kowabunga.Region() # Region | Region payload.
+    region_update = kowabunga.RegionUpdate() # RegionUpdate | RegionUpdate payload.
 
     try:
-        api_response = api_instance.update_region(region_id, region)
+        api_response = api_instance.update_region(region_id, region_update)
         print("The response of RegionApi->update_region:\n")
         pprint(api_response)
     except Exception as e:
@@ -1647,7 +1664,7 @@ with kowabunga.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **region_id** | **str**| The ID of the region. | 
- **region** | [**Region**](Region.md)| Region payload. | 
+ **region_update** | [**RegionUpdate**](RegionUpdate.md)| RegionUpdate payload. | 
 
 ### Return type
 
@@ -1670,6 +1687,7 @@ Name | Type | Description  | Notes
 **400** | BadRequest error: Bad request (wrong input parameters). |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 **422** | UnprocessableEntity error: Server can&#39;t process request. |  -  |
 **507** | InsufficientResource error: Server can&#39;t allocate resources (logical quotas or physical limits hit). |  -  |

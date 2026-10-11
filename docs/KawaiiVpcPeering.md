@@ -6,11 +6,11 @@ A Kawaii internal VPC subnet peering.
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**subnet** | **str** | Kowabunga Subnet ID to be peered with (subnet local IP addresses will be automatically assigned to Kawaii instances).. | 
+**subnet** | **str** | Kowabunga Subnet ID to be peered with (subnet local IP addresses will be automatically assigned to Kawaii instances). | 
 **policy** | **str** | The default VPC traffic forwarding policy. | [optional] [default to 'drop']
 **ingress** | [**List[KawaiiVpcForwardRule]**](KawaiiVpcForwardRule.md) | The firewall list of forwarding ingress rules from VPC peered subnet. ICMP traffic is always accepted. The specified ruleset will be explicitly accepted if drop is the default policy (useless otherwise). | [optional] 
 **egress** | [**List[KawaiiVpcForwardRule]**](KawaiiVpcForwardRule.md) | The firewall list of forwarding egress rules to VPC peered subnet. ICMP traffic is always accepted. The specified ruleset will be explicitly accepted if drop is the default policy (useless otherwise). | [optional] 
-**netip** | [**List[KawaiiVpcNetIpZone]**](KawaiiVpcNetIpZone.md) | The per-zone auto-assigned private IPs in peered subnet (read-only). | [optional] 
+**netip** | [**List[KawaiiNetIpZone]**](KawaiiNetIpZone.md) | The per-zone auto-assigned private IPs in peered subnet (read-only). | [optional] [readonly] 
 
 ## Example
 

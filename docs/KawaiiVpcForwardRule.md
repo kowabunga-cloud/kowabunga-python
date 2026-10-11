@@ -6,8 +6,8 @@ A Kawaii VPC firewall forwarding rule.
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**protocol** | **str** | The transport layer protocol to forward public traffic to. | [optional] [default to 'tcp']
-**ports** | **str** | The port (or list of ports) to forward public traffic from. Ranges are accepted. Format is a-b,c-d (e.g. 443; 22,80,443; 80,443,3000-3005). | 
+**protocol** | **str** | The transport layer protocol to forward VPC traffic to. | [optional] [default to 'tcp']
+**ports** | **str** | The port (or list of ports) to forward VPC traffic from. Ranges are accepted. Format is a-b,c-d (e.g. 443; 22,80,443; 80,443,3000-3005). | 
 
 ## Example
 

@@ -4,7 +4,7 @@ All URIs are relative to *https://raw.githubusercontent.com/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**create_subnet**](VnetApi.md#create_subnet) | **POST** /vnet/{vnetId}/subnet | 
+[**create_v_net_subnet**](VnetApi.md#create_v_net_subnet) | **POST** /vnet/{vnetId}/subnet | 
 [**delete_v_net**](VnetApi.md#delete_v_net) | **DELETE** /vnet/{vnetId} | 
 [**list_v_net_subnets**](VnetApi.md#list_v_net_subnets) | **GET** /vnet/{vnetId}/subnets | 
 [**list_v_nets**](VnetApi.md#list_v_nets) | **GET** /vnet | 
@@ -13,8 +13,8 @@ Method | HTTP request | Description
 [**update_v_net**](VnetApi.md#update_v_net) | **PUT** /vnet/{vnetId} | 
 
 
-# **create_subnet**
-> Subnet create_subnet(vnet_id, subnet)
+# **create_v_net_subnet**
+> Subnet create_v_net_subnet(vnet_id, subnet)
 
 Creates a new network subnet.
 
@@ -59,11 +59,11 @@ with kowabunga.ApiClient(configuration) as api_client:
     subnet = kowabunga.Subnet() # Subnet | Subnet payload.
 
     try:
-        api_response = api_instance.create_subnet(vnet_id, subnet)
-        print("The response of VnetApi->create_subnet:\n")
+        api_response = api_instance.create_v_net_subnet(vnet_id, subnet)
+        print("The response of VnetApi->create_v_net_subnet:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling VnetApi->create_subnet: %s\n" % e)
+        print("Exception when calling VnetApi->create_v_net_subnet: %s\n" % e)
 ```
 
 
@@ -97,6 +97,7 @@ Name | Type | Description  | Notes
 **400** | BadRequest error: Bad request (wrong input parameters). |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 **409** | Conflict error: A similar resource already exists or resource is still being referenced somewhere. |  -  |
 **422** | UnprocessableEntity error: Server can&#39;t process request. |  -  |
@@ -182,6 +183,7 @@ void (empty response body)
 **200** | The virtual network has been successfully removed. |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 **409** | Conflict error: A similar resource already exists or resource is still being referenced somewhere. |  -  |
 **422** | UnprocessableEntity error: Server can&#39;t process request. |  -  |
@@ -268,6 +270,7 @@ Name | Type | Description  | Notes
 **200** | Returns an array of network subnet IDs. |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -348,6 +351,7 @@ This endpoint does not need any parameter.
 **200** | Returns an array of virtual network IDs. |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -432,6 +436,7 @@ Name | Type | Description  | Notes
 **200** | Returns the virtual network object. |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -516,13 +521,14 @@ void (empty response body)
 **200** | The virtual network setting of default network subnet is successful. |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 **422** | UnprocessableEntity error: Server can&#39;t process request. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_v_net**
-> VNet update_v_net(vnet_id, v_net)
+> VNet update_v_net(vnet_id, v_net_update)
 
 Updates a virtual network configuration.
 
@@ -534,6 +540,7 @@ Updates a virtual network configuration.
 ```python
 import kowabunga
 from kowabunga.models.v_net import VNet
+from kowabunga.models.v_net_update import VNetUpdate
 from kowabunga.rest import ApiException
 from pprint import pprint
 
@@ -564,10 +571,10 @@ with kowabunga.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = kowabunga.VnetApi(api_client)
     vnet_id = 'vnet_id_example' # str | The ID of the virtual network.
-    v_net = kowabunga.VNet() # VNet | VNet payload.
+    v_net_update = kowabunga.VNetUpdate() # VNetUpdate | VNetUpdate payload.
 
     try:
-        api_response = api_instance.update_v_net(vnet_id, v_net)
+        api_response = api_instance.update_v_net(vnet_id, v_net_update)
         print("The response of VnetApi->update_v_net:\n")
         pprint(api_response)
     except Exception as e:
@@ -582,7 +589,7 @@ with kowabunga.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **vnet_id** | **str**| The ID of the virtual network. | 
- **v_net** | [**VNet**](VNet.md)| VNet payload. | 
+ **v_net_update** | [**VNetUpdate**](VNetUpdate.md)| VNetUpdate payload. | 
 
 ### Return type
 
@@ -605,6 +612,7 @@ Name | Type | Description  | Notes
 **400** | BadRequest error: Bad request (wrong input parameters). |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 **422** | UnprocessableEntity error: Server can&#39;t process request. |  -  |
 **507** | InsufficientResource error: Server can&#39;t allocate resources (logical quotas or physical limits hit). |  -  |

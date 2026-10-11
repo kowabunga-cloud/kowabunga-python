@@ -4,7 +4,7 @@ All URIs are relative to *https://raw.githubusercontent.com/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**create_kaktus**](ZoneApi.md#create_kaktus) | **POST** /zone/{zoneId}/kaktus | 
+[**create_zone_kaktus**](ZoneApi.md#create_zone_kaktus) | **POST** /zone/{zoneId}/kaktus | 
 [**delete_zone**](ZoneApi.md#delete_zone) | **DELETE** /zone/{zoneId} | 
 [**list_zone_kaktuses**](ZoneApi.md#list_zone_kaktuses) | **GET** /zone/{zoneId}/kaktuses | 
 [**list_zones**](ZoneApi.md#list_zones) | **GET** /zone | 
@@ -12,8 +12,8 @@ Method | HTTP request | Description
 [**update_zone**](ZoneApi.md#update_zone) | **PUT** /zone/{zoneId} | 
 
 
-# **create_kaktus**
-> Kaktus create_kaktus(zone_id, kaktus)
+# **create_zone_kaktus**
+> Kaktus create_zone_kaktus(zone_id, kaktus)
 
 Creates a new Kaktus computing node.
 
@@ -58,11 +58,11 @@ with kowabunga.ApiClient(configuration) as api_client:
     kaktus = kowabunga.Kaktus() # Kaktus | Kaktus payload.
 
     try:
-        api_response = api_instance.create_kaktus(zone_id, kaktus)
-        print("The response of ZoneApi->create_kaktus:\n")
+        api_response = api_instance.create_zone_kaktus(zone_id, kaktus)
+        print("The response of ZoneApi->create_zone_kaktus:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling ZoneApi->create_kaktus: %s\n" % e)
+        print("Exception when calling ZoneApi->create_zone_kaktus: %s\n" % e)
 ```
 
 
@@ -96,6 +96,7 @@ Name | Type | Description  | Notes
 **400** | BadRequest error: Bad request (wrong input parameters). |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 **409** | Conflict error: A similar resource already exists or resource is still being referenced somewhere. |  -  |
 **422** | UnprocessableEntity error: Server can&#39;t process request. |  -  |
@@ -181,6 +182,7 @@ void (empty response body)
 **200** | The availability zone has been successfully removed. |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 **409** | Conflict error: A similar resource already exists or resource is still being referenced somewhere. |  -  |
 **422** | UnprocessableEntity error: Server can&#39;t process request. |  -  |
@@ -267,6 +269,7 @@ Name | Type | Description  | Notes
 **200** | Returns an array of Kaktus computing node IDs. |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -347,6 +350,7 @@ This endpoint does not need any parameter.
 **200** | Returns an array of availability zone IDs. |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -431,12 +435,13 @@ Name | Type | Description  | Notes
 **200** | Returns the availability zone object. |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_zone**
-> Zone update_zone(zone_id, zone)
+> Zone update_zone(zone_id, zone_update)
 
 Updates a availability zone configuration.
 
@@ -448,6 +453,7 @@ Updates a availability zone configuration.
 ```python
 import kowabunga
 from kowabunga.models.zone import Zone
+from kowabunga.models.zone_update import ZoneUpdate
 from kowabunga.rest import ApiException
 from pprint import pprint
 
@@ -478,10 +484,10 @@ with kowabunga.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = kowabunga.ZoneApi(api_client)
     zone_id = 'zone_id_example' # str | The ID of the availability zone.
-    zone = kowabunga.Zone() # Zone | Zone payload.
+    zone_update = kowabunga.ZoneUpdate() # ZoneUpdate | ZoneUpdate payload.
 
     try:
-        api_response = api_instance.update_zone(zone_id, zone)
+        api_response = api_instance.update_zone(zone_id, zone_update)
         print("The response of ZoneApi->update_zone:\n")
         pprint(api_response)
     except Exception as e:
@@ -496,7 +502,7 @@ with kowabunga.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **zone_id** | **str**| The ID of the availability zone. | 
- **zone** | [**Zone**](Zone.md)| Zone payload. | 
+ **zone_update** | [**ZoneUpdate**](ZoneUpdate.md)| ZoneUpdate payload. | 
 
 ### Return type
 
@@ -519,6 +525,7 @@ Name | Type | Description  | Notes
 **400** | BadRequest error: Bad request (wrong input parameters). |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 **422** | UnprocessableEntity error: Server can&#39;t process request. |  -  |
 **507** | InsufficientResource error: Server can&#39;t allocate resources (logical quotas or physical limits hit). |  -  |

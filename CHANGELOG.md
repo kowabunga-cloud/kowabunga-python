@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.58.0](https://github.com/kowabunga-cloud/kowabunga-python/releases/tag/0.58.0) (2026-10-11)
+
+Update to [Kowabunga API v0.58.0](https://github.com/kowabunga-cloud/openapi/releases/tag/v0.58.0).
+
+### [API v0.58.0](https://github.com/kowabunga-cloud/openapi/releases/tag/v0.58.0)
+#### Features
+
+* harmonize API definitions ([d0e41d1](https://github.com/kowabunga-cloud/openapi/commit/d0e41d174bf182ee1484b5e55f2ff578197cd98c))
+
+
 ## [0.57.1](https://github.com/kowabunga-cloud/kowabunga-python/releases/tag/0.57.1) (2026-10-11)
 
 Update to [Kowabunga API v0.57.1](https://github.com/kowabunga-cloud/openapi/releases/tag/v0.57.1).

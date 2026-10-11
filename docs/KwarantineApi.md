@@ -97,6 +97,7 @@ Name | Type | Description  | Notes
 **200** | Returns the Kwarantine object. |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 **422** | UnprocessableEntity error: Server can&#39;t process request. |  -  |
 
@@ -185,6 +186,7 @@ Name | Type | Description  | Notes
 **200** | Returns the Kwarantine object. |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 **422** | UnprocessableEntity error: Server can&#39;t process request. |  -  |
 
@@ -268,6 +270,7 @@ void (empty response body)
 **200** | The Kwarantine has been successfully removed. |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 **409** | Conflict error: A similar resource already exists or resource is still being referenced somewhere. |  -  |
 **422** | UnprocessableEntity error: Server can&#39;t process request. |  -  |
@@ -350,6 +353,7 @@ This endpoint does not need any parameter.
 **200** | Returns an array of Kwarantine IDs. |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -434,6 +438,7 @@ Name | Type | Description  | Notes
 **200** | Returns the Kwarantine object. |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -518,6 +523,7 @@ void (empty response body)
 **200** | The virtual machine instance has been removed from the Kwarantine group. |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 **422** | UnprocessableEntity error: Server can&#39;t process request. |  -  |
 
@@ -603,13 +609,14 @@ void (empty response body)
 **200** | The Kompute has been removed from the Kwarantine group. |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 **422** | UnprocessableEntity error: Server can&#39;t process request. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_kwarantine**
-> Kwarantine update_kwarantine(kwarantine_id, kwarantine)
+> Kwarantine update_kwarantine(kwarantine_id, kwarantine_update)
 
 Updates a Kwarantine configuration.
 
@@ -621,6 +628,7 @@ Updates a Kwarantine configuration.
 ```python
 import kowabunga
 from kowabunga.models.kwarantine import Kwarantine
+from kowabunga.models.kwarantine_update import KwarantineUpdate
 from kowabunga.rest import ApiException
 from pprint import pprint
 
@@ -651,10 +659,10 @@ with kowabunga.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = kowabunga.KwarantineApi(api_client)
     kwarantine_id = 'kwarantine_id_example' # str | The ID of the Kwarantine.
-    kwarantine = kowabunga.Kwarantine() # Kwarantine | Kwarantine payload.
+    kwarantine_update = kowabunga.KwarantineUpdate() # KwarantineUpdate | KwarantineUpdate payload.
 
     try:
-        api_response = api_instance.update_kwarantine(kwarantine_id, kwarantine)
+        api_response = api_instance.update_kwarantine(kwarantine_id, kwarantine_update)
         print("The response of KwarantineApi->update_kwarantine:\n")
         pprint(api_response)
     except Exception as e:
@@ -669,7 +677,7 @@ with kowabunga.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **kwarantine_id** | **str**| The ID of the Kwarantine. | 
- **kwarantine** | [**Kwarantine**](Kwarantine.md)| Kwarantine payload. | 
+ **kwarantine_update** | [**KwarantineUpdate**](KwarantineUpdate.md)| KwarantineUpdate payload. | 
 
 ### Return type
 
@@ -692,6 +700,7 @@ Name | Type | Description  | Notes
 **400** | BadRequest error: Bad request (wrong input parameters). |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 **422** | UnprocessableEntity error: Server can&#39;t process request. |  -  |
 **507** | InsufficientResource error: Server can&#39;t allocate resources (logical quotas or physical limits hit). |  -  |

@@ -6,7 +6,7 @@ A Kowabunga user.
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **str** | The Kowabunga user ID (auto-generated). | [optional] 
+**id** | **str** | The Kowabunga user ID (auto-generated) (read-only). | [optional] [readonly] 
 **name** | **str** | The Kowabunga user name. | 
 **description** | **str** | The Kowabunga user description. | [optional] 
 **email** | **str** | User email address. | 

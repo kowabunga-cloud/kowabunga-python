@@ -10,7 +10,7 @@ Method | HTTP request | Description
 [**login**](UserApi.md#login) | **POST** /login | 
 [**logout**](UserApi.md#logout) | **POST** /logout | 
 [**read_user**](UserApi.md#read_user) | **GET** /user/{userId} | 
-[**reset_password**](UserApi.md#reset_password) | **PUT** /resetPassword | 
+[**reset_password**](UserApi.md#reset_password) | **POST** /resetPassword | 
 [**reset_user_password**](UserApi.md#reset_user_password) | **PATCH** /user/{userId}/resetPassword | 
 [**set_user_api_token**](UserApi.md#set_user_api_token) | **PATCH** /user/{userId}/token | 
 [**set_user_password**](UserApi.md#set_user_password) | **PUT** /user/{userId}/password | 
@@ -99,6 +99,7 @@ Name | Type | Description  | Notes
 **400** | BadRequest error: Bad request (wrong input parameters). |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 **409** | Conflict error: A similar resource already exists or resource is still being referenced somewhere. |  -  |
 **422** | UnprocessableEntity error: Server can&#39;t process request. |  -  |
@@ -184,6 +185,7 @@ void (empty response body)
 **200** | The Kowabunga user has been successfully removed. |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 **409** | Conflict error: A similar resource already exists or resource is still being referenced somewhere. |  -  |
 **422** | UnprocessableEntity error: Server can&#39;t process request. |  -  |
@@ -266,18 +268,17 @@ This endpoint does not need any parameter.
 **200** | Returns an array of Kowabunga user IDs. |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **login**
 > UserCredentials login(user_credentials)
 
-Creates a new Kowabunga user login credentials.
+Authenticates a Kowabunga user and returns a JWT token for Bearer Authentication.
 
 ### Example
 
-* Api Key Authentication (ApiKeyAuth):
-* Bearer (JWT) Authentication (BearerAuth):
 
 ```python
 import kowabunga
@@ -291,21 +292,6 @@ configuration = kowabunga.Configuration(
     host = "https://raw.githubusercontent.com/api/v1"
 )
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: ApiKeyAuth
-configuration.api_key['ApiKeyAuth'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
-
-# Configure Bearer authorization (JWT): BearerAuth
-configuration = kowabunga.Configuration(
-    access_token = os.environ["BEARER_TOKEN"]
-)
 
 # Enter a context with an instance of the API client
 with kowabunga.ApiClient(configuration) as api_client:
@@ -336,7 +322,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[ApiKeyAuth](../README.md#ApiKeyAuth), [BearerAuth](../README.md#BearerAuth)
+No authorization required
 
 ### HTTP request headers
 
@@ -347,21 +333,17 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**201** | Returns the newly created Kowabunga user login credentials object. |  -  |
+**200** | Returns the Kowabunga user login credentials, along with the JWT token. |  -  |
 **400** | BadRequest error: Bad request (wrong input parameters). |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
-**403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
-**404** | NotFound error: Specified resource does not exist. |  -  |
-**409** | Conflict error: A similar resource already exists or resource is still being referenced somewhere. |  -  |
-**422** | UnprocessableEntity error: Server can&#39;t process request. |  -  |
-**507** | InsufficientResource error: Server can&#39;t allocate resources (logical quotas or physical limits hit). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **logout**
 > logout()
 
-Creates a new Kowabunga user logout session.
+Terminates the Kowabunga user logout session, revoking the JWT token in use.
 
 ### Example
 
@@ -429,14 +411,9 @@ void (empty response body)
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**204** | Kowabunga user logout session has been created. |  -  |
-**400** | BadRequest error: Bad request (wrong input parameters). |  -  |
+**204** | The Kowabunga user logout session has been terminated. |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
-**403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
-**404** | NotFound error: Specified resource does not exist. |  -  |
-**409** | Conflict error: A similar resource already exists or resource is still being referenced somewhere. |  -  |
-**422** | UnprocessableEntity error: Server can&#39;t process request. |  -  |
-**507** | InsufficientResource error: Server can&#39;t allocate resources (logical quotas or physical limits hit). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -521,6 +498,7 @@ Name | Type | Description  | Notes
 **200** | Returns the Kowabunga user object. |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -528,12 +506,10 @@ Name | Type | Description  | Notes
 # **reset_password**
 > reset_password(user_email)
 
-Updates a Kowabunga userreset of password for the provided email (server-side generated, will replace any existing one) configuration.
+Resets the password of the Kowabunga user with the provided email address. A new password is server-side generated, replacing any existing one, and sent by email. For privacy reasons, the response is the same whether the email address is registered or not.
 
 ### Example
 
-* Api Key Authentication (ApiKeyAuth):
-* Bearer (JWT) Authentication (BearerAuth):
 
 ```python
 import kowabunga
@@ -547,21 +523,6 @@ configuration = kowabunga.Configuration(
     host = "https://raw.githubusercontent.com/api/v1"
 )
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: ApiKeyAuth
-configuration.api_key['ApiKeyAuth'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
-
-# Configure Bearer authorization (JWT): BearerAuth
-configuration = kowabunga.Configuration(
-    access_token = os.environ["BEARER_TOKEN"]
-)
 
 # Enter a context with an instance of the API client
 with kowabunga.ApiClient(configuration) as api_client:
@@ -590,7 +551,7 @@ void (empty response body)
 
 ### Authorization
 
-[ApiKeyAuth](../README.md#ApiKeyAuth), [BearerAuth](../README.md#BearerAuth)
+No authorization required
 
 ### HTTP request headers
 
@@ -601,13 +562,9 @@ void (empty response body)
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | The Kowabunga userreset of password for the provided email (server-side generated, will replace any existing one) has been updated. |  -  |
+**200** | The password reset request has been processed. |  -  |
 **400** | BadRequest error: Bad request (wrong input parameters). |  -  |
-**401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
-**403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
-**404** | NotFound error: Specified resource does not exist. |  -  |
-**422** | UnprocessableEntity error: Server can&#39;t process request. |  -  |
-**507** | InsufficientResource error: Server can&#39;t allocate resources (logical quotas or physical limits hit). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -689,15 +646,16 @@ void (empty response body)
 **200** | The Kowabunga user reset of password (server-side generated, will replace any existing one) is successful. |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 **422** | UnprocessableEntity error: Server can&#39;t process request. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **set_user_api_token**
-> set_user_api_token(user_id, expire=expire, expiration_date=expiration_date)
+> ApiToken set_user_api_token(user_id, expire=expire, expiration_date=expiration_date)
 
-Performs a Kowabunga user setting of API token (will replace any existing one).
+Performs a Kowabunga user setting of API token (will replace any existing one; the generated API key is only sent once, by email, to the user).
 
 ### Example
 
@@ -706,6 +664,7 @@ Performs a Kowabunga user setting of API token (will replace any existing one).
 
 ```python
 import kowabunga
+from kowabunga.models.api_token import ApiToken
 from kowabunga.rest import ApiException
 from pprint import pprint
 
@@ -736,11 +695,13 @@ with kowabunga.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = kowabunga.UserApi(api_client)
     user_id = 'user_id_example' # str | The ID of the Kowabunga user.
-    expire = True # bool | Whether or not the token should expire. (optional)
+    expire = False # bool | Whether or not the token should expire. (optional) (default to False)
     expiration_date = '2013-10-20' # date | Token's expiration date (YYYY-MM-DD format). (optional)
 
     try:
-        api_instance.set_user_api_token(user_id, expire=expire, expiration_date=expiration_date)
+        api_response = api_instance.set_user_api_token(user_id, expire=expire, expiration_date=expiration_date)
+        print("The response of UserApi->set_user_api_token:\n")
+        pprint(api_response)
     except Exception as e:
         print("Exception when calling UserApi->set_user_api_token: %s\n" % e)
 ```
@@ -753,12 +714,12 @@ with kowabunga.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **user_id** | **str**| The ID of the Kowabunga user. | 
- **expire** | **bool**| Whether or not the token should expire. | [optional] 
+ **expire** | **bool**| Whether or not the token should expire. | [optional] [default to False]
  **expiration_date** | **date**| Token&#39;s expiration date (YYYY-MM-DD format). | [optional] 
 
 ### Return type
 
-void (empty response body)
+[**ApiToken**](ApiToken.md)
 
 ### Authorization
 
@@ -773,9 +734,10 @@ void (empty response body)
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | The Kowabunga user setting of API token (will replace any existing one) is successful. |  -  |
+**200** | Returns the server-to-server authentication security token object. |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 **422** | UnprocessableEntity error: Server can&#39;t process request. |  -  |
 
@@ -863,6 +825,7 @@ void (empty response body)
 **400** | BadRequest error: Bad request (wrong input parameters). |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 **422** | UnprocessableEntity error: Server can&#39;t process request. |  -  |
 **507** | InsufficientResource error: Server can&#39;t allocate resources (logical quotas or physical limits hit). |  -  |
@@ -870,7 +833,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_user**
-> User update_user(user_id, user)
+> User update_user(user_id, user_update)
 
 Updates a Kowabunga user configuration.
 
@@ -882,6 +845,7 @@ Updates a Kowabunga user configuration.
 ```python
 import kowabunga
 from kowabunga.models.user import User
+from kowabunga.models.user_update import UserUpdate
 from kowabunga.rest import ApiException
 from pprint import pprint
 
@@ -912,10 +876,10 @@ with kowabunga.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = kowabunga.UserApi(api_client)
     user_id = 'user_id_example' # str | The ID of the Kowabunga user.
-    user = kowabunga.User() # User | User payload.
+    user_update = kowabunga.UserUpdate() # UserUpdate | UserUpdate payload.
 
     try:
-        api_response = api_instance.update_user(user_id, user)
+        api_response = api_instance.update_user(user_id, user_update)
         print("The response of UserApi->update_user:\n")
         pprint(api_response)
     except Exception as e:
@@ -930,7 +894,7 @@ with kowabunga.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **user_id** | **str**| The ID of the Kowabunga user. | 
- **user** | [**User**](User.md)| User payload. | 
+ **user_update** | [**UserUpdate**](UserUpdate.md)| UserUpdate payload. | 
 
 ### Return type
 
@@ -953,6 +917,7 @@ Name | Type | Description  | Notes
 **400** | BadRequest error: Bad request (wrong input parameters). |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 **422** | UnprocessableEntity error: Server can&#39;t process request. |  -  |
 **507** | InsufficientResource error: Server can&#39;t allocate resources (logical quotas or physical limits hit). |  -  |

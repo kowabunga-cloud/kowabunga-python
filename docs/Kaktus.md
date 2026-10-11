@@ -6,7 +6,7 @@ A Kaktus (Kowabunga Affordable KVM and Tight Underneath Storage) is an hyper-con
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **str** | The Kaktus computing node ID (auto-generated). | [optional] 
+**id** | **str** | The Kaktus computing node ID (auto-generated) (read-only). | [optional] [readonly] 
 **name** | **str** | The Kaktus computing node name. | 
 **description** | **str** | The Kaktus computing node description. | [optional] 
 **cpu_cost** | [**Cost**](Cost.md) | Cost associated to the Kaktus node&#39;s CPU resources. | [optional] 
@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **overcommit_cpu_ratio** | **int** | The Kaktus node CPU resource over-commit ratio. Overcommitting CPU resources for VMs means allocating more virtual CPUs (vCPUs) to the virtual machines (VMs) than the physical cores available on the node. This can help optimize the utilization of the node CPU and increase the density of VMs per node. | [optional] [default to 3]
 **overcommit_memory_ratio** | **int** | The Kaktus node memory resource over-commit ratio. Memory overcommitment is a concept in computing that covers the assignment of more memory to virtual computing devices (or processes) than the physical machine they are hosted, or running on, actually has. | [optional] [default to 2]
 **agents** | **List[str]** | a list of existing remote agents managing the Kaktus node. | 
-**maintenance** | **bool** | Whether the Kaktus node is under maintenance. A node under maintenance keeps running its existing instances but is excluded from scheduling of newly created workloads. | [optional] [default to False]
+**maintenance** | **bool** | Whether the Kaktus node is under maintenance. A node under maintenance keeps running its existing instances but is excluded from scheduling of newly created workloads. Use the maintenance enable/disable operations to change it (read-only). | [optional] [readonly] 
 
 ## Example
 

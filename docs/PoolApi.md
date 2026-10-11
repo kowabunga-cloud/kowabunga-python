@@ -4,7 +4,7 @@ All URIs are relative to *https://raw.githubusercontent.com/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**create_template**](PoolApi.md#create_template) | **POST** /pool/{poolId}/template | 
+[**create_storage_pool_template**](PoolApi.md#create_storage_pool_template) | **POST** /pool/{poolId}/template | 
 [**delete_storage_pool**](PoolApi.md#delete_storage_pool) | **DELETE** /pool/{poolId} | 
 [**list_storage_pool_templates**](PoolApi.md#list_storage_pool_templates) | **GET** /pool/{poolId}/templates | 
 [**list_storage_pool_volumes**](PoolApi.md#list_storage_pool_volumes) | **GET** /pool/{poolId}/volumes | 
@@ -14,8 +14,8 @@ Method | HTTP request | Description
 [**update_storage_pool**](PoolApi.md#update_storage_pool) | **PUT** /pool/{poolId} | 
 
 
-# **create_template**
-> Template create_template(pool_id, template)
+# **create_storage_pool_template**
+> Template create_storage_pool_template(pool_id, template)
 
 Creates a new image template.
 
@@ -60,11 +60,11 @@ with kowabunga.ApiClient(configuration) as api_client:
     template = kowabunga.Template() # Template | Template payload.
 
     try:
-        api_response = api_instance.create_template(pool_id, template)
-        print("The response of PoolApi->create_template:\n")
+        api_response = api_instance.create_storage_pool_template(pool_id, template)
+        print("The response of PoolApi->create_storage_pool_template:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling PoolApi->create_template: %s\n" % e)
+        print("Exception when calling PoolApi->create_storage_pool_template: %s\n" % e)
 ```
 
 
@@ -98,6 +98,7 @@ Name | Type | Description  | Notes
 **400** | BadRequest error: Bad request (wrong input parameters). |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 **409** | Conflict error: A similar resource already exists or resource is still being referenced somewhere. |  -  |
 **422** | UnprocessableEntity error: Server can&#39;t process request. |  -  |
@@ -183,6 +184,7 @@ void (empty response body)
 **200** | The storage pool has been successfully removed. |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 **409** | Conflict error: A similar resource already exists or resource is still being referenced somewhere. |  -  |
 **422** | UnprocessableEntity error: Server can&#39;t process request. |  -  |
@@ -269,6 +271,7 @@ Name | Type | Description  | Notes
 **200** | Returns an array of image template IDs. |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -353,6 +356,7 @@ Name | Type | Description  | Notes
 **200** | Returns an array of storage volume IDs. |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -433,6 +437,7 @@ This endpoint does not need any parameter.
 **200** | Returns an array of storage pool IDs. |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -517,6 +522,7 @@ Name | Type | Description  | Notes
 **200** | Returns the storage pool object. |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -601,13 +607,14 @@ void (empty response body)
 **200** | The storage pool setting of default template is successful. |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 **422** | UnprocessableEntity error: Server can&#39;t process request. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_storage_pool**
-> StoragePool update_storage_pool(pool_id, storage_pool)
+> StoragePool update_storage_pool(pool_id, storage_pool_update)
 
 Updates a storage pool configuration.
 
@@ -619,6 +626,7 @@ Updates a storage pool configuration.
 ```python
 import kowabunga
 from kowabunga.models.storage_pool import StoragePool
+from kowabunga.models.storage_pool_update import StoragePoolUpdate
 from kowabunga.rest import ApiException
 from pprint import pprint
 
@@ -649,10 +657,10 @@ with kowabunga.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = kowabunga.PoolApi(api_client)
     pool_id = 'pool_id_example' # str | The ID of the storage pool.
-    storage_pool = kowabunga.StoragePool() # StoragePool | StoragePool payload.
+    storage_pool_update = kowabunga.StoragePoolUpdate() # StoragePoolUpdate | StoragePoolUpdate payload.
 
     try:
-        api_response = api_instance.update_storage_pool(pool_id, storage_pool)
+        api_response = api_instance.update_storage_pool(pool_id, storage_pool_update)
         print("The response of PoolApi->update_storage_pool:\n")
         pprint(api_response)
     except Exception as e:
@@ -667,7 +675,7 @@ with kowabunga.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **pool_id** | **str**| The ID of the storage pool. | 
- **storage_pool** | [**StoragePool**](StoragePool.md)| StoragePool payload. | 
+ **storage_pool_update** | [**StoragePoolUpdate**](StoragePoolUpdate.md)| StoragePoolUpdate payload. | 
 
 ### Return type
 
@@ -690,6 +698,7 @@ Name | Type | Description  | Notes
 **400** | BadRequest error: Bad request (wrong input parameters). |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 **422** | UnprocessableEntity error: Server can&#39;t process request. |  -  |
 **507** | InsufficientResource error: Server can&#39;t allocate resources (logical quotas or physical limits hit). |  -  |

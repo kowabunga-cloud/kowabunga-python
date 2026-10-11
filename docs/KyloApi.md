@@ -88,6 +88,7 @@ void (empty response body)
 **200** | The Kylo has been successfully removed. |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 **409** | Conflict error: A similar resource already exists or resource is still being referenced somewhere. |  -  |
 **422** | UnprocessableEntity error: Server can&#39;t process request. |  -  |
@@ -170,6 +171,7 @@ This endpoint does not need any parameter.
 **200** | Returns an array of Kylo IDs. |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -254,12 +256,13 @@ Name | Type | Description  | Notes
 **200** | Returns the Kylo object. |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_kylo**
-> Kylo update_kylo(kylo_id, kylo)
+> Kylo update_kylo(kylo_id, kylo_update)
 
 Updates a Kylo configuration.
 
@@ -271,6 +274,7 @@ Updates a Kylo configuration.
 ```python
 import kowabunga
 from kowabunga.models.kylo import Kylo
+from kowabunga.models.kylo_update import KyloUpdate
 from kowabunga.rest import ApiException
 from pprint import pprint
 
@@ -301,10 +305,10 @@ with kowabunga.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = kowabunga.KyloApi(api_client)
     kylo_id = 'kylo_id_example' # str | The ID of the Kylo.
-    kylo = kowabunga.Kylo() # Kylo | Kylo payload.
+    kylo_update = kowabunga.KyloUpdate() # KyloUpdate | KyloUpdate payload.
 
     try:
-        api_response = api_instance.update_kylo(kylo_id, kylo)
+        api_response = api_instance.update_kylo(kylo_id, kylo_update)
         print("The response of KyloApi->update_kylo:\n")
         pprint(api_response)
     except Exception as e:
@@ -319,7 +323,7 @@ with kowabunga.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **kylo_id** | **str**| The ID of the Kylo. | 
- **kylo** | [**Kylo**](Kylo.md)| Kylo payload. | 
+ **kylo_update** | [**KyloUpdate**](KyloUpdate.md)| KyloUpdate payload. | 
 
 ### Return type
 
@@ -342,6 +346,7 @@ Name | Type | Description  | Notes
 **400** | BadRequest error: Bad request (wrong input parameters). |  -  |
 **401** | Unauthorized error: Unauthorized resource access (wrong auth/credentials). |  -  |
 **403** | Forbidden error: Forbidden resource access (restricted access control). |  -  |
+**500** | InternalServerError error: Server-side failure while processing the request. |  -  |
 **404** | NotFound error: Specified resource does not exist. |  -  |
 **422** | UnprocessableEntity error: Server can&#39;t process request. |  -  |
 **507** | InsufficientResource error: Server can&#39;t allocate resources (logical quotas or physical limits hit). |  -  |
