@@ -1,0 +1,33 @@
+name: OpenAPI Update
+
+# Updates to new Kowabunga API releases, as notified by the OpenAPI
+# repository, or manually.
+on:
+  repository_dispatch:
+    types: [openapi-release]
+  workflow_dispatch:
+    inputs:
+      version:
+        description: API version (e.g. 0.57.1)
+        required: true
+        type: string
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  update:
+    uses: kowabunga-cloud/workflows/.github/workflows/openapi-update.yml@v1
+    secrets: inherit
+    with:
+      version: ${{ github.event.client_payload.version || inputs.version }}
+      mode: release
+      setup: python
+      tag-prefix: ''
+      update: |
+        sed -i -E "s|^SDK_OPENAPI_VERSION = .*|SDK_OPENAPI_VERSION = tags/v${VERSION}|" Makefile
+        make sdk
+      test: |
+        pip install -r requirements.txt -r test-requirements.txt
+        pytest
