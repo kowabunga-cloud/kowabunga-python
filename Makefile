@@ -93,7 +93,7 @@ sdk: get-openapi-generator ; $(info $(M) [OpenAPIv3] Generate Python SDK client 
 	$Q cp -rf $(BUILD_DIR)/kowabunga .
 	$Q cp -f $(BUILD_DIR)/pyproject.toml .
 	$Q cp -f $(BUILD_DIR)/requirements.txt .
-	$Q cp -f $(BUILD_DIR)/setup.{cfg,py} .
+	$Q cp -f $(BUILD_DIR)/setup.cfg $(BUILD_DIR)/setup.py .
 	$Q cp -rf $(BUILD_DIR)/test .
 	$Q cp -f $(BUILD_DIR)/test-requirements.txt .
 	$Q cp -f $(BUILD_DIR)/tox.ini .
